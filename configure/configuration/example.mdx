@@ -2,16 +2,16 @@
 title: Example
 ---
 
-```json
+```json config.json icon="file-json"
 {
   "plcnext": {
-    "ipAddress": "172.200.1.120",
+    "ipAddress": "192.168.1.10",
     "username": "admin",
     "password": "xxxxxxxx"
   },
   "mqtt": {
     "broker": {
-      "ipAddress": "172.200.1.120"
+      "ipAddress": "192.168.1.10"
     }
   },
   "telegram": {
@@ -19,16 +19,21 @@ title: Example
     "botToken": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   },
   "nats": {
-    "cloudUsername": "plc",
-    "cloudPassword": "xxxxxxxxxxxx",
-    "ipAddress": "159.223.110.128",
-    "bucket": "xxxxxxxx",
-    "localUsername": "client",
-    "localPassword": "xxxxxxxx"
+    "local": {
+      "username": "client",
+      "password": "xxxxxxxx"
+    },
+    "cloud": {
+      "username": "plc",
+      "password": "xxxxxxxxxxxx",
+      "ipAddress": "192.168.1.5",
+      "bucket": "xxxxxxxx",
+    }
   }
 }
 ```
 
 <Warning>
-Please note that the configuration file comes pre-filled with all the necessary parameters. The only exception is if the controller's IP address changes during commissioning. In that case, you will need to update the **ipAddress** entries in both the **plcnext** and **mqtt** sections. All other parameters can remain unchanged.
+Please note that the configuration file comes pre-filled with all the necessary parameters. The only exception is if the controller's IP address changes during commissioning. 
+In that case, you will need to update the ipAddress entries in both the plcnext and mqtt sections. All other parameters can remain unchanged.
 </Warning>
