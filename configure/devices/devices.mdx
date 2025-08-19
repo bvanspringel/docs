@@ -2,15 +2,19 @@
 title: Configuration
 ---
 
-In this section, you will learn how to create and configure your own devices file, and how to add more devices to it. This file is essential for integrating the PPL controller with the devices inside your microgrid application. The devices file can be found in the `/etc` folder of the `ppl-base` repository and is listed as `devices.json`.
+In this section, you will learn how to create and configure your own devices file. This file is essential for integrating and interfacing the PPL controller with 
+the devices in your microgrid application. The devices file can be found in the `/etc` folder of the `ppl-base` repository and is listed as `devices.json`.
 
-The devices file is crucial for the operation of the PPL controller, as it contains the configuration details for all devices within your microgrid application. This JSON-formatted file is stored directly on the PPL controller. Upon startup, the controller reads this file and establishes connections with the listed devices.
+The devices file is crucial for the operation of the PPL controller, as it contains the configuration details for all devices within your microgrid application. 
+This JSON-formatted file is stored directly on the PPL controller. Upon startup, the controller reads this file and establishes connections with the listed devices.
 
-When adding a new device, a critical part is specifying the communication protocol or the type for each device. This defines how the controller communicates with each device. The supported communication protocols and types include:
+When adding a new device, it is critical to specify the communication protocol or the type for each device. This defines how the controller communicates with each device.
+The supported communication protocols and types include:
 
 - **Modbus TCP/IP**
 - **MQTT**
-- **Digital I/O (Inputs/Outputs)**
-- **Analog I/O (Inputs/Outputs)**
+- **Digital I/O**
+- **Analog I/O**
 
-Each device entry in the file must specify the appropriate protocol from the list above. In addition to the protocol, a device entry in the devices file also contains other required and optional parameters. The required and optional parameters for each communication protocol are explained in more detail below.
+Each device entry in the file must specify the appropriate protocol from the list above. In addition to the protocol, a device entry in the devices file also contains 
+other required and optional parameters. The required and optional parameters for each communication protocol are explained in more detail below.

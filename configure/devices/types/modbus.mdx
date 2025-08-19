@@ -4,15 +4,15 @@ title: Modbus TCP/IP
 
 To add a device using the Modbus TCP/IP communication protocol, the following parameters are required.
 
-### **Required Parameters**
+### Required Parameters
 
 - **id:** A unique identifier for the device. (Type: String, e.g., “battery1”)
 - **protocol:** The communication protocol between the controller and the device. For this type of device, it will always be "Modbus TCP/IP". (Type: String, e.g., "Modbus TCP/IP")
 - **ipAddress:** The static IP address set for the device. (Type: String, e.g., "172.200.1.130")
 - **port:** The port number used for communication. Please consult the device's manual to determine the port on which it communicates. (Type: Int, e.g., 502)
 - **slaveId:** The slave ID of the device. Please consult the device's manual to determine the specific slave ID. (Type: Int, e.g., 1)
-- **controlMap:** The path to the device’s control map on the controller. This should always be in the “opt/ppl/etc” directory. (Type: String, e.g., "/opt/ppl/etc/lgjh4_control.json")
-- **addressMap:** The path to the device’s address map on the controller. This should always be in the “opt/ppl/etc” directory. (Type: String, e.g., "/opt/ppl/etc/lgjh4_address_map.json")
+- **controlMap:** The name of the device’s control map on the controller. (Type: String, e.g., "lgjh4_control")
+- **addressMap:** The name of the device’s address map on the controller. (Type: String, e.g., "lgjh4_address_map")
 - **disabled:** Indicates whether the device is enabled or disabled. A value of true means the device is disabled, while false means the device is enabled. (Type: Bool)
 
 The snippet below demonstrates a device with **id** "battery1" and **protocol** "Modbus TCP/IP", including all required parameters:
@@ -24,8 +24,8 @@ The snippet below demonstrates a device with **id** "battery1" and **protocol** 
   "ipAddress": "172.200.1.130",
   "port": 502,
   "slaveId": 1,
-  "controlMap": "/opt/ppl/etc/lgjh4_control.json",
-  "addressMap": "/opt/ppl/etc/lgjh4_address_map.json",
+  "controlMap": "lgjh4_control",
+  "addressMap": "lgjh4_address_map",
   "disabled": false
 }
 ```
@@ -34,7 +34,7 @@ The snippet below demonstrates a device with **id** "battery1" and **protocol** 
 
 The parameters listed below are optional and are not required for a device with the Modbus TCP/IP protocol to work properly. However, sometimes it is desirable to add these optional parameters for device monitoring or because they are required by the manufacturer.
 
-### **Optional Parameters**
+### Optional Parameters
 
 - **critical:** Marks this device as critical or not. If a device is marked as critical (value true), any fault occurring on this device will send out an alert or notification over Telegram. (Type: Bool)
 - **communicationInterval:** Indicates the delay between consecutive Modbus operations, read or write. Between each Modbus command, the controller will wait this amount of time. The value is expressed in seconds. (Type: Int or Float)
@@ -48,15 +48,15 @@ The snippet below demonstrates a device with **id** “converter1” and **proto
   "ipAddress": "172.200.1.131",
   "port": 502,
   "slaveId": 240,
-  "controlMap": "/opt/ppl/etc/30C3_control.json",
-  "addressMap": "/opt/ppl/etc/30C3_address_map.json",
+  "controlMap": "30C3_control",
+  "addressMap": "30C3_address_map",
   "disabled": false,
   "critical": true,
   "communicationInterval": 0.2
 }
 ```
 
-<aside>
-⚠️ When configuring a device with Modbus TCP/IP communication, ensure all required parameters are correctly specified to prevent configuration errors. Optional parameters can offer additional functionality and control but are not essential for basic operation. Always verify that the paths provided for **addressMap** and **controlMap** are accurate and that the files exist in the specified locations.
-
-</aside>
+<Warning>
+When configuring a device with Modbus TCP/IP communication, ensure all required parameters are correctly specified to prevent configuration errors. Optional parameters can offer additional 
+functionality and control but are not essential for basic operation. Always verify that the paths provided for addressMap and controlMap are accurate and that the files exist in the specified locations.
+</Warning>

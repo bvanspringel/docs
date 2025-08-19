@@ -8,10 +8,9 @@ Each entry in the JSON-formatted address map corresponds to a Modbus register on
 
 Modbus registers or addresses have two key distinctions: read operations and write operations. Modbus read operations correspond to function codes FC1, FC2, FC3, and FC4. Write operations, used for sending commands to devices, are associated with function codes FC5, FC6, FC15, and FC16. This distinction is crucial when adding Modbus registers to the device address map.
 
-<aside>
-✅ Please note that for most devices, the most commonly used function codes are FC3, FC6, and FC16. However, it is important to know that the PPL controller supports all Modbus function codes, despite the frequent use of these particular ones.
-
-</aside>
+<Check>
+Please note that for most devices, the most commonly used function codes are FC3, FC6, and FC16. However, it is important to know that the PPL controller supports all Modbus function codes, despite the frequent use of these particular ones.
+</Check>
 
 ### Naming Conventions
 

@@ -17,10 +17,9 @@ The following parameters can be added to digital input or output devices; howeve
 
 - **retainInputs:** This parameter indicates if the inputs should be retained or not. If true, when input changes state, it will keep the value for 10 seconds. (Type: Bool)
     
-    <aside>
-    ❗ Note that this parameter is relevant only for digital inputs, not for outputs.
-    
-    </aside>
+    <Note>
+    Note that this parameter is relevant only for digital inputs, not for outputs.
+    </Note>
     
 - **controlMap:** The path to the device’s control map on the controller. This should always be in the “opt/ppl/etc” directory. (Type: String, e.g., "/opt/ppl/etc/indicators_rgb7_control.json")
 
@@ -45,7 +44,6 @@ The snippet below demonstrates two different digital input/output devices, highl
 ]
 ```
 
-<aside>
-⚠️ When configuring a digital input or output device, ensure that all required parameters are correctly specified to avoid configuration errors. Optional parameters can provide additional functionality and control but are not necessary for basic operation. Always verify that the paths provided for **addressMap** and **controlMap** are accurate and that the files exist in the specified locations.
-
-</aside>
+<Warning>
+When configuring a digital input or output device, ensure that all required parameters are correctly specified to avoid configuration errors. Optional parameters can provide additional functionality and control but are not necessary for basic operation. Always verify that the paths provided for **addressMap** and **controlMap** are accurate and that the files exist in the specified locations.
+</Warning>
