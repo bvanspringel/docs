@@ -1,0 +1,39 @@
+---
+title: Digital I/O
+---
+
+A control map for digital I/O’s is typically used to control multiple digital outputs with a single command. This will be illustrated by the example provided below. As mentioned in the introduction, the digital I/O’s will automatically and periodically read every register in the address map marked with “measure.” Therefore, in this case, a control command like **getMeasurements** is not required.
+
+### Required Parameters
+
+- **Name:** The unique name of the control command. (Type: String, e.g., “red”)
+- **Commands:** This contains a list of write commands that will be executed when the control command is called upon. (Type: String)
+
+### Example
+
+The example below shows a part of the control map of the LED status indicator on the PPL control panel. Changing its color requires setting or adjusting four digital outputs. To simplify this process and avoid changing each output individually, the control map includes commands labeled with color names that will adjust all four digital outputs simultaneously.
+
+```json
+[
+  {
+    "name": "off",
+    "commands": "control.status.input1 = 0 | control.status.input2 = 0 | control.status.input3 = 0 | control.status.input4 = 0"
+  },
+  {
+    "name": "red",
+    "commands": "control.status.input1 = 1 | control.status.input2 = 0 | control.status.input3 = 0 | control.status.input4 = 0"
+  },
+  {
+    "name": "yellow",
+    "commands": "control.status.input1 = 1 | control.status.input2 = 1 | control.status.input3 = 0 | control.status.input4 = 0"
+  },
+  {
+    "name": "flashblue",
+    "commands": "control.status.input1 = 0 | control.status.input2 = 0 | control.status.input3 = 1 | control.status.input4 = 1"
+  },
+  {
+    "name": "flashwhite",
+    "commands": "control.status.input1 = 1 | control.status.input2 = 1 | control.status.input3 = 1 | control.status.input4 = 1"
+  }
+]
+```

@@ -1,0 +1,52 @@
+---
+title: Example
+---
+
+Here is an example of a final devices file, featuring devices with various protocols and types. Please note that this file is for illustration only and cannot be uploaded to the controller. Ensure that you modify, add, or remove devices as needed to accurately reflect all the devices in your application.
+
+```json
+[
+  {
+	  "id": "battery1",
+	  "protocol": "Modbus TCP/IP",
+	  "ipAddress": "172.200.1.130",
+	  "port": 502,
+	  "slaveId": 1,
+	  "controlMap": "/opt/ppl/etc/lgjh4_control.json",
+	  "addressMap": "/opt/ppl/etc/lgjh4_address_map.json",
+	  "disabled": false
+	},
+  {
+	  "id": "converter1",
+	  "protocol": "Modbus TCP/IP",
+	  "ipAddress": "172.200.1.131",
+	  "port": 502,
+	  "slaveId": 240,
+	  "controlMap": "/opt/ppl/etc/30C3_control.json",
+	  "addressMap": "/opt/ppl/etc/30C3_address_map.json",
+	  "disabled": false,
+	  "critical": true,
+	  "communicationInterval": 0.2
+	},
+	{
+	  "id": "pushbuttons",
+	  "type": "digitalInputOutput",
+	  "addressMap": "/opt/ppl/etc/pushbuttons_address_map.json",
+	  "retainInputs": true,
+	  "disabled": false
+	},
+	{
+	  "id": "indicators",
+	  "type": "digitalInputOutput",
+	  "controlMap": "/opt/ppl/etc/indicators_rgb7_control.json",
+	  "addressMap": "/opt/ppl/etc/indicators_address_map.json",
+	  "disabled": false
+	},
+	{
+	  "id": "transducer",
+	  "type": "analogInputOutput",
+	  "addressMap": "/opt/ppl/etc/vmt_address_map.json",
+	  "disabled": false
+	}
+]
+```

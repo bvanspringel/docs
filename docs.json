@@ -11,58 +11,52 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Configure PPL Files",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "configure/index"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Devices File",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "configure/devices/devices",
+              "configure/devices/example"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Config File",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "configure/configuration/config",
+              "configure/configuration/example"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Address Map Files",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
+              "configure/address-map/index",
+              "configure/address-map/modbus",
+              "configure/address-map/mqtt",
+              "configure/address-map/aio",
+              "configure/address-map/dio"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Control Map Files",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "configure/control-map/index",
+              "configure/control-map/modbus",
+              "configure/control-map/mqtt",
+              "configure/control-map/aio",
+              "configure/control-map/dio"
+            ]
+          },
+          {
+            "group": "Upload Files",
+            "pages": [
+              "configure/upload"
             ]
           }
         ]
@@ -71,18 +65,8 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "anchor": "BLOG",
+          "href": "https://dcide.app",
           "icon": "newspaper"
         }
       ]
@@ -96,13 +80,13 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@directenergypartners.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Discover DCIDE",
+      "href": "https://dcide.app"
     }
   },
   "contextual": {
@@ -119,9 +103,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "website": "https://www.directenergypartners.com",
+      "linkedin": "https://www.linkedin.com/company/direct-energy-partners"
     }
   }
 }

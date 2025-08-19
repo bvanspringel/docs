@@ -1,0 +1,35 @@
+---
+title: Example
+---
+
+```json
+{
+  "plcnext": {
+    "ipAddress": "172.200.1.120",
+    "username": "admin",
+    "password": "xxxxxxxx"
+  },
+  "mqtt": {
+    "broker": {
+      "ipAddress": "172.200.1.120"
+    }
+  },
+  "telegram": {
+    "chatId": "-xxxxxxxxxx",
+    "botToken": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "nats": {
+    "cloudUsername": "plc",
+    "cloudPassword": "xxxxxxxxxxxx",
+    "ipAddress": "159.223.110.128",
+    "bucket": "xxxxxxxx",
+    "localUsername": "client",
+    "localPassword": "xxxxxxxx"
+  }
+}
+```
+
+<aside>
+⚠️ Please note that the configuration file comes pre-filled with all the necessary parameters. The only exception is if the controller's IP address changes during commissioning. In that case, you will need to update the **ipAddress** entries in both the **plcnext** and **mqtt** sections. All other parameters can remain unchanged.
+
+</aside>

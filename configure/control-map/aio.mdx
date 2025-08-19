@@ -1,0 +1,15 @@
+---
+title: Analog I/O
+---
+
+So far, a control map for analog inputs or outputs has not been created because there has been no use case for it. As previously mentioned, the analog I/O’s will automatically and periodically read every register in the address map marked with “measure.” Therefore, a control command like **getMeasurements** is not needed in this case. Although a control map for analog I/O’s has not been created before, the structure and required parameters for constructing one remain the same.
+
+### Required Parameters
+
+- **Name:** The unique name of the control command. (Type: String)
+- **Commands:** This contains a list of write commands that will be executed when the control command is called upon. (Type: String)
+
+<aside>
+✅ It's always advisable to have your custom-created device and config files, addresses, and control maps reviewed by the DEP PPL support team. They can verify that your files are accurate and free from errors by running them in a simulated environment. To request support, please email [pplsupport@directenergypartners.com](mailto:pplsupport@directenergypartners.com).
+
+</aside>

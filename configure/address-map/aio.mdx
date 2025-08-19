@@ -1,0 +1,48 @@
+---
+title: Analog I/O
+---
+
+### Naming Conventions
+
+While not mandatory, it is recommended to adopt the following naming conventions for clarity and usability:
+
+- **Write Operations:** Prefix register names with "control." to indicate that the register is used to set the analog output.
+- **Read Operations:** Prefix register names with "measure." to signify that the register is used to read the analog input signal.
+
+See the example address map below for register naming conventions.
+
+### Required Parameters
+
+- **name:** A unique name for the register. (Type: String, e.g., "measure.voltage")
+- **address:** Corresponds to the number on the analog input or output module. (Type: Int)
+    
+    <aside>
+    ❗ Please note that the address should start from 0, not from 1.
+    
+    </aside>
+    
+- **type:** Indicates whether the register is an input or an output. (Type: String, options: "input", "output")
+
+### Optional Parameters
+
+- **scaling:** The scaling factor to apply to the analog register's return value or the value being written. (Type: Float or Int, e.g., 0.1 or 10)
+- **offset:** The offset to apply to the analog register's return value or the value being written. (Type: Float or Int, e.g., 100)
+
+### Example
+
+```json
+[
+	{        
+    "name": "measure.voltage",
+    "address": 0,
+    "type": "input",
+    "scaling": 50,
+    "offset": 100
+	},
+	{        
+    "name": "control.lights",
+    "address": 0,
+    "type": "output"
+  }
+]
+```

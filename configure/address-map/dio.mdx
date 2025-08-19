@@ -1,0 +1,51 @@
+---
+title: Digital I/O
+---
+
+### Naming Conventions
+
+While not mandatory, it is recommended to adopt the following naming conventions for clarity and usability:
+
+- **Write Operations:** Prefix register names with "control." to indicate that the register is used to set the digital output.
+- **Read Operations:** Prefix register names with "measure." to signify that the register is used to read the digital input signal.
+
+See the example address map below for register naming conventions.
+
+### Required Parameters
+
+- **name:** A unique name for the register. (Type: String, e.g., "measure.start")
+- **address:** Corresponds to the number on the digital input or output module. (Type: Int)
+    
+    <aside>
+    ❗ Please note that the address should start from 0, not from 1. However, the physical address on the I/O module begins at 1.
+    
+    </aside>
+    
+- **type:** Indicates whether the register is an input or an output. (Type: String, options: "input", "output")
+
+### Optional Parameters
+
+- **invert:** Indicates whether to invert the input or output of the digital I/O, meaning that "on" becomes "off" and vice versa. This relates to the digital input or output being a normally open or normally closed contact. (Type: Bool)
+
+### Example
+
+```json
+[
+	{        
+    "name": "control.reset",
+    "address": 2,
+    "type": "output"
+  },
+  {        
+    "name": "measure.start",
+    "address": 6,
+    "type": "input"
+  },
+  {        
+    "name": "measure.stop",
+    "address": 7,
+    "type": "input",
+    "invert": true
+  }
+]
+```

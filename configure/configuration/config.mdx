@@ -1,0 +1,58 @@
+---
+title: Configuration
+---
+
+The configuration file is essential for the proper functioning of the controller, as it includes important settings related to its communication interfaces, such as MQTT, Telegram, and NATS. Specifically, the configuration file must include four required entries, which need to be configured for each controller. These entries are:
+
+- **plcnext**
+- **mqtt**
+- **telegram**
+- **nats**
+
+Below, we will provide detailed information on each entry, including the required parameters and any optional ones. The configuration file can be found in the `/etc` folder of the `ppl-base` repository and is listed as `config.json`.
+
+### plcnext
+
+### Required Parameters
+
+- **ipAddress:** This is the IP address of the controller. It should always be configured to the controller’s current IP address, as it is used to create sockets. (Type: String, e.g., “172.200.1.120”)
+
+### Optional Parameters
+
+Though these parameters are not required for the controller to operate, it is good practice to include them in the configuration file to avoid losing track of login credentials.
+
+- **username:** The username for logging into the WBM of the controller or a shell session. This should be set to “admin”. (Type: String)
+- **password:** The password for logging into the WBM of the controller or a shell session. (Type: String)
+
+### mqtt
+
+### Required Parameters
+
+- **broker:** This entry contains all relevant information for the broker. At this time, only the **ipAddress** is required. The IP address should be the controller’s current IP address. For clarity, refer to the final configuration file example below. (Type: String)
+
+### telegram
+
+Telegram is preconfigured in the config file to enable notifications and alerts. These include livebit messages every 24 hours and alerts for critical device failures in the system. If the customer does not wish to receive updates via Telegram, they simply need to remove this entry from the config file.
+
+### Required Parameters
+
+- **chatID:** Represents the unique chat ID of the Telegram channel. Each Telegram channel has its own unique ID. (Type: String)
+- **botToken:** A token consisting of letters and numbers, required for authorizing the bot and sending requests to the Bot API. The Bot API is already added to the Telegram channel. (Type: String)
+
+### nats
+
+### Required Parameters
+
+The required parameters are used to set up a local NATS server on the controller. This NATS server is used to integrate with custom applications developed by the customer.
+
+- **localUsername:** The username for setting up a local NATS server on the PPL controller. (Type: String)
+- **localPassword:** The password for setting up a local NATS server on the PPL controller. (Type: String)
+
+### Optional Parameters
+
+The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing measurements. By providing these parameters, the controller can periodically push data to the cloud.
+
+- **cloudUsername:** The username for connecting to the cloud NATS server, used to store controller data in the cloud database. (Type: String)
+- **cloudPassword:** The password for connecting to the cloud NATS server, used to store controller data in the cloud database. (Type: String)
+- **ipAddress:** The IP address of the cloud server hosting the database. (Type: String)
+- **bucket:** The name of the database bucket where the controller data will be stored. Note that the bucket must be created by Direct Energy Partners. (Type: String)

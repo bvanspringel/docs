@@ -1,0 +1,134 @@
+---
+title: Modbus TCP/IP
+---
+
+Each entry in the JSON-formatted address map corresponds to a Modbus register on the actual device. Every register in the address map must contain several required and optional parameters, which are described below. The final address map should cover all relevant Modbus registers, including both read and write registers.
+
+### Understanding Modbus Registers
+
+Modbus registers or addresses have two key distinctions: read operations and write operations. Modbus read operations correspond to function codes FC1, FC2, FC3, and FC4. Write operations, used for sending commands to devices, are associated with function codes FC5, FC6, FC15, and FC16. This distinction is crucial when adding Modbus registers to the device address map.
+
+<aside>
+✅ Please note that for most devices, the most commonly used function codes are FC3, FC6, and FC16. However, it is important to know that the PPL controller supports all Modbus function codes, despite the frequent use of these particular ones.
+
+</aside>
+
+### Naming Conventions
+
+While not mandatory, it is recommended to adopt the following naming conventions for clarity and usability:
+
+- **Write Operations:** Prefix register names with "control." to indicate that the register is used for controlling the device.
+- **Read Operations:** Prefix register names with "measure." to signify that the register is used for measurement purposes.
+- **Fault and Warning Registers:** Use the prefixes "fault." or "warning." for registers that monitor faults or warnings. This helps in generating appropriate Telegram notifications and alerts for the system.
+
+See the example Modbus address map below for register naming conventions.
+
+### Required Parameters
+
+Each register in the address map must include the following parameters, regardless of whether it is for reading or writing Modbus registers:
+
+- **address:** The Modbus device address from which to read a register or to which to write a value. (Type: Int)
+- **numberOfRegisters:** Specifies the number of registers to read or write. This should be 1 for (u)int16 data types and 2 for (u)int32 or float32 data types. (Type: Int)
+- **name:** A unique name for the register, representing the measurement point read from or written to the Modbus device. (Type: String, e.g., "measure.ports.port1.voltage")
+- **datatype:** The data type of the value. (Type: String, options: int16, uint16, int32, uint32, float32)
+- **functionCode:** The Modbus function code required to read from or write to the device. (Type: Int, options: FC1, FC2, FC3, FC4, FC5, FC6, FC15, FC16)
+
+### Optional Parameters
+
+These parameters are not necessary for every register but can be included as needed:
+
+- **scaling:** The scaling factor to apply to the Modbus register's return value or the value being written. (Type: Float or Int, e.g., 0.1 or 10)
+- **offset:** The offset to apply to the Modbus register's return value or the value being written. (Type: Float or Int, e.g., -3000)
+- **map:** Indicates if mapping should be applied to the return value or the value being written. (Type: String, options: "bitwise" or "value")
+    - **Bitwise Mapping:** Each bit in a number corresponds to a specific state (e.g., fault or status).
+    - **Value Mapping:** The entire return value corresponds to a state.
+- **wordOrder:** Specifies the word order notation. (Type: String, options: "littleEndian", "bigEndian")
+- **byteOrder:** Specifies the byte order notation. (Type: String, options: "littleEndian", "bigEndian")
+
+### Required Register ‘communicationCheck’
+
+There is a specific register that must be included in every Modbus address map, known as **communicationCheck**. This register allows the PPL controller to verify communication with the Modbus device. The controller pings the device and attempts to read the value from the register specified as communicationCheck. A successful read confirms the connection between the PPL controller and the Modbus device.
+
+This register only needs the required parameters to be filled in; optional parameters are not necessary. However, the register must be a valid Modbus register on the device. Therefore, it can be a duplicate of another Modbus register in your address map, but with a different name. For example:
+
+```json
+{
+	"address": 1,
+  "numberOfRegisters": 1,
+  "name": "communicationCheck",
+  "datatype": "int16",
+  "functionCode": 3
+}
+```
+
+By following the naming conventions and adding all the required and optional parameters to each Modbus register, you have created a complete address map for the controller to communicate and interact with the device. The final JSON file should be saved with a unique name and a `.json` extension. For example, **30C3_address_map.json**.
+
+### Example
+
+```json
+[
+	{
+	  "address": 1,
+	  "numberOfRegisters": 1,
+	  "name": "measure.ports.port1.voltage",
+	  "datatype": "int16",
+	  "functionCode": 3
+	},
+	{
+	  "address": 2,
+	  "numberOfRegisters": 1,
+	  "name": "measure.ports.port2.current",
+	  "datatype": "int16",
+	  "functionCode": 3,
+	  "scaling": -0.1,
+	  "offset": 0
+	},
+	{
+	  "address": 3,
+	  "numberOfRegisters": 1,
+	  "name": "control.ports.port1.method",
+	  "datatype": "uint16",
+	  "functionCode": 6,
+	  "map": {
+		  "type": "value",
+		  "0": "disabled",
+		  "1": "uncontrolled",
+		  "1026": "GPWR",
+		  "1282": "FPWR"
+		}
+	},
+	{
+	  "address": 4,
+	  "numberOfRegisters": 1,
+	  "name": "fault.active.0",
+	  "datatype": "uint16",
+	  "functionCode": 3,
+	  "map": {
+	    "type": "bitwise",
+	    "0": "GFDI fault",
+	    "1": "IMI fault",
+	    "2": "PM heatsink temp",
+	    "3": "Control board temp",
+	    "4": "24V undervoltage",
+	    "5": "Ext fan lockd",
+	    "6": "DC OV",
+	    "7": "DC UV",
+	    "8": "Link OV",
+	    "9": "Link starve",
+	    "10": "Link OI",
+	    "11": "Link Prim Pos 1200V",
+	    "12": "Link Prim Neg 1200V",
+	    "13": "Link Sec Pos 1200V",
+	    "14": "Link Sec Neg 1200V",
+	    "15": "AC1 A-B Hard Sw Cond"
+	  }
+	},
+	{
+	  "address": 1,
+	  "numberOfRegisters": 1,
+	  "name": "communicationCheck",
+	  "datatype": "int16",
+	  "functionCode": 3
+	}
+]
+```

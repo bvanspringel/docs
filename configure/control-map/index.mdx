@@ -1,0 +1,11 @@
+---
+title: Introduction
+---
+
+In this section, you will learn how to create control maps for devices. Control maps are particularly important for devices that communicate over Modbus TCP/IP.
+
+The purpose of control maps is to either read multiple registers with a single command or send multiple commands to a device with a single command. It is important to note that each device that requires a control map will have its own specific control map. Not all device types need a control map; for instance, control maps are less commonly used for digital and analog I/O’s, though they can exist.
+
+For digital and analog I/O’s, all registers listed in the address map with the prefix “measure.” are automatically read from the modules. Control maps for digital I/O’s are typically used to control multiple outputs with one command. For more information, see the section below.
+
+The control maps can be found in the `*/etc*` folder of the `ppl-base` repository. They follow a typical naming convention: `<uniqueName>_control.json`. Each control map file must have a .json extension. For clarity, it is recommended, though not required, that the `uniqueName` is the same as that of the corresponding address map.
