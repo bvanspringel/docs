@@ -1,0 +1,23 @@
+---
+title: Analog I/O
+---
+
+To add an analog input or an analog output device, such as voltage transducer, the following parameters are required.
+
+**Required Parameters:**
+
+- **id:** A unique identifier for the device. (Type: String, e.g., “transducer”)
+- **type:** Indicates the type of device. For this type of device, it is always "analogInputOutput". (Type: String, e.g., "analogInputOutput")
+- **addressMap:** The path to the device’s address map on the controller. This should always be in the “opt/ppl/etc” directory. (Type: String, e.g., "/opt/ppl/etc/vmt_address_map.json")
+- **disabled:** Indicates whether the device is enabled or disabled. A value of true means the device is disabled, while false means the device is enabled. (Type: Bool)
+
+The snippet below illustrates an analog input/output device, highlighting the required parameters. Note that no optional parameters should be added for this device type.
+
+```json
+{
+  "id": "transducer",
+  "type": "analogInputOutput",
+  "addressMap": "/opt/ppl/etc/vmt_address_map.json",
+  "disabled": false
+}
+```

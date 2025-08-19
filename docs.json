@@ -23,6 +23,15 @@
             "group": "Devices File",
             "pages": [
               "configure/devices/devices",
+              {
+                "group": "Device Types",
+                "pages": [
+                  "configure/devices/types/modbus",
+                  "configure/devices/types/mqtt",
+                  "configure/devices/types/aio",
+                  "configure/devices/types/dio"
+                ]
+              },
               "configure/devices/example"
             ]
           },
@@ -37,20 +46,30 @@
             "group": "Address Map Files",
             "pages": [
               "configure/address-map/index",
-              "configure/address-map/modbus",
-              "configure/address-map/mqtt",
-              "configure/address-map/aio",
-              "configure/address-map/dio"
+              {
+                "group": "Device Types",
+                "pages": [
+                  "configure/address-map/types/modbus",
+                  "configure/address-map/types/mqtt",
+                  "configure/address-map/types/aio",
+                  "configure/address-map/types/dio"
+                ]
+              }
             ]
           },
           {
             "group": "Control Map Files",
             "pages": [
               "configure/control-map/index",
-              "configure/control-map/modbus",
-              "configure/control-map/mqtt",
-              "configure/control-map/aio",
-              "configure/control-map/dio"
+              {
+                "group": "Device Types",
+                "pages": [
+                  "configure/control-map/types/modbus",
+                  "configure/control-map/types/mqtt",
+                  "configure/control-map/types/aio",
+                  "configure/control-map/types/dio"
+                ]
+              }
             ]
           },
           {
@@ -65,7 +84,7 @@
     "global": {
       "anchors": [
         {
-          "anchor": "BLOG",
+          "anchor": "Blog",
           "href": "https://dcide.app",
           "icon": "newspaper"
         }
