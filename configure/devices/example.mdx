@@ -13,8 +13,8 @@ cannot be uploaded to the controller. Ensure that you modify, add, or remove dev
 	  "ipAddress": "172.200.1.130",
 	  "port": 502,
 	  "slaveId": 1,
-	  "controlMap": "/opt/ppl/etc/lgjh4_control.json",
-	  "addressMap": "/opt/ppl/etc/lgjh4_address_map.json",
+	  "controlMap": "lgjh4_control",
+	  "addressMap": "lgjh4_address_map",
 	  "disabled": false
 	},
   {
@@ -23,8 +23,8 @@ cannot be uploaded to the controller. Ensure that you modify, add, or remove dev
 	  "ipAddress": "172.200.1.131",
 	  "port": 502,
 	  "slaveId": 240,
-	  "controlMap": "/opt/ppl/etc/30C3_control.json",
-	  "addressMap": "/opt/ppl/etc/30C3_address_map.json",
+	  "controlMap": "30C3_control",
+	  "addressMap": "30C3_address_map",
 	  "disabled": false,
 	  "critical": true,
 	  "communicationInterval": 0.2
@@ -32,21 +32,21 @@ cannot be uploaded to the controller. Ensure that you modify, add, or remove dev
 	{
 	  "id": "pushbuttons",
 	  "type": "digitalInputOutput",
-	  "addressMap": "/opt/ppl/etc/pushbuttons_address_map.json",
+	  "addressMap": "pushbuttons_address_map",
 	  "retainInputs": true,
 	  "disabled": false
 	},
 	{
 	  "id": "indicators",
 	  "type": "digitalInputOutput",
-	  "controlMap": "/opt/ppl/etc/indicators_rgb7_control.json",
-	  "addressMap": "/opt/ppl/etc/indicators_address_map.json",
+	  "controlMap": "indicators_rgb7_control",
+	  "addressMap": "indicators_address_map",
 	  "disabled": false
 	},
 	{
 	  "id": "transducer",
 	  "type": "analogInputOutput",
-	  "addressMap": "/opt/ppl/etc/vmt_address_map.json",
+	  "addressMap": "vmt_address_map",
 	  "disabled": false
 	}
 ]

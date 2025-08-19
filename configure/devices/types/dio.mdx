@@ -4,16 +4,16 @@ title: Digital I/O
 
 To add a digital input or a digital output device, such as pushbuttons or a LED status indicator, the following parameters are required.
 
-**Required Parameters:**
+### Required Parameters
 
 - **id:** A unique identifier for the device. (Type: String, e.g., “pushbuttons”)
 - **type:** Indicates the type of device. For this type of device, it is always "digitalInputOutput". (Type: String, e.g., "digitalInputOutput")
-- **addressMap:** The path to the device’s address map on the controller. This should always be in the “opt/ppl/etc” directory. (Type: String, e.g., "/opt/ppl/etc/pushbuttons_address_map.json")
+- **addressMap:** The name of the device’s address map on the controller. (Type: String, e.g., "pushbuttons_address_map")
 - **disabled:** Indicates whether the device is enabled or disabled. A value of true means the device is disabled, while false means the device is enabled. (Type: Bool)
 
 The following parameters can be added to digital input or output devices; however, they are optional and not required. These parameters provide additional functionality to the device.
 
-**Optional Parameters:**
+### Optional Parameters
 
 - **retainInputs:** This parameter indicates if the inputs should be retained or not. If true, when input changes state, it will keep the value for 10 seconds. (Type: Bool)
     
@@ -21,7 +21,7 @@ The following parameters can be added to digital input or output devices; howeve
     Note that this parameter is relevant only for digital inputs, not for outputs.
     </Note>
     
-- **controlMap:** The path to the device’s control map on the controller. This should always be in the “opt/ppl/etc” directory. (Type: String, e.g., "/opt/ppl/etc/indicators_rgb7_control.json")
+- **controlMap:** The name of the device’s control map on the controller. (Type: String, e.g., "indicators_rgb7_control")
 
 The snippet below demonstrates two different digital input/output devices, highlighting both the required and optional parameters.
 
@@ -30,20 +30,22 @@ The snippet below demonstrates two different digital input/output devices, highl
 	{
 	  "id": "pushbuttons",
 	  "type": "digitalInputOutput",
-	  "addressMap": "/opt/ppl/etc/pushbuttons_address_map.json",
+	  "addressMap": "pushbuttons_address_map",
 	  "retainInputs": true,
 	  "disabled": false
 	},
 	{
 	  "id": "indicators",
 	  "type": "digitalInputOutput",
-	  "controlMap": "/opt/ppl/etc/indicators_rgb7_control.json",
-	  "addressMap": "/opt/ppl/etc/indicators_address_map.json",
+	  "controlMap": "indicators_rgb7_control",
+	  "addressMap": "indicators_address_map",
 	  "disabled": false
 	}
 ]
 ```
 
 <Warning>
-When configuring a digital input or output device, ensure that all required parameters are correctly specified to avoid configuration errors. Optional parameters can provide additional functionality and control but are not necessary for basic operation. Always verify that the paths provided for **addressMap** and **controlMap** are accurate and that the files exist in the specified locations.
+When configuring a digital input or output device, ensure that all required parameters are correctly specified to avoid configuration errors. 
+Optional parameters can provide additional functionality and control but are not necessary for basic operation. 
+Always verify that the paths provided for addressMap and controlMap are accurate and that the files exist in the specified locations.
 </Warning>
