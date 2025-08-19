@@ -50,7 +50,7 @@ There is a specific register that must be included in every Modbus address map, 
 
 This register only needs the required parameters to be filled in; optional parameters are not necessary. However, the register must be a valid Modbus register on the device. Therefore, it can be a duplicate of another Modbus register in your address map, but with a different name. For example:
 
-```json
+```json icon="code"
 {
 	"address": 1,
   "numberOfRegisters": 1,
@@ -64,7 +64,7 @@ By following the naming conventions and adding all the required and optional par
 
 ### Example
 
-```json address_map.json icon="file-json"
+```json address_map.json icon="code"
 [
 	{
 	  "address": 1,
