@@ -2,26 +2,62 @@
 title: Modbus TCP/IP
 ---
 
+### Required Parameters
 To add a device using the Modbus TCP/IP communication protocol, the following parameters are required.
 
-### Required Parameters
+<ParamField path="id" type="string" required>
+A unique identifier for the device.
 
-- **id:** A unique identifier for the device. (Type: String, e.g., “battery1”)
-- **protocol:** The communication protocol between the controller and the device. For this type of device, it will always be "Modbus TCP/IP". (Type: String, e.g., "Modbus TCP/IP")
-- **ipAddress:** The static IP address set for the device. (Type: String, e.g., "172.200.1.130")
-- **port:** The port number used for communication. Please consult the device's manual to determine the port on which it communicates. (Type: Int, e.g., 502)
-- **slaveId:** The slave ID of the device. Please consult the device's manual to determine the specific slave ID. (Type: Int, e.g., 1)
-- **controlMap:** The name of the device’s control map on the controller. (Type: String, e.g., "lgjh4_control")
-- **addressMap:** The name of the device’s address map on the controller. (Type: String, e.g., "lgjh4_address_map")
-- **disabled:** Indicates whether the device is enabled or disabled. A value of true means the device is disabled, while false means the device is enabled. (Type: Bool)
+**Example:** `battery1`
+</ParamField>
 
-The snippet below demonstrates a device with **id** "battery1" and **protocol** "Modbus TCP/IP", including all required parameters:
+<ParamField path="protocol" type="string" required>
+The communication protocol between the controller and the device. For this type of device, it will always be `Modbus TCP/IP`.
 
-```json
+**Example:** `Modbus TCP/IP`
+</ParamField>
+
+<ParamField path="ipAddress" type="string" required>
+The static IP address set for the device.
+
+**Example:** `192.168.1.20`
+</ParamField>
+
+<ParamField path="port" type="int" required>
+The port number used for communication. Please consult the device's manual to determine the port on which it communicates.
+
+**Example:** `502`
+</ParamField>
+
+<ParamField path="slaveId" type="int" required>
+The slave ID of the device. Please consult the device's manual to determine the specific slave ID.
+
+**Example:** `1`
+</ParamField>
+
+<ParamField path="controlMap" type="string" required>
+The name of the device’s control map on the controller.
+
+**Example:** `lgjh4_control`
+</ParamField>
+
+<ParamField path="addressMap" type="string" required>
+The name of the device’s address map on the controller.
+
+**Example:** `lgjh4_address_map`
+</ParamField>
+
+<ParamField path="disabled" type="bool" required>
+Indicates whether the device is enabled or disabled. A value of true means the device is disabled, while false means the device is enabled.
+</ParamField>
+
+The snippet below demonstrates a device with id `battery1` and protocol `Modbus TCP/IP`, including all required parameters:
+
+```json icon="code"
 {
   "id": "battery1",
   "protocol": "Modbus TCP/IP",
-  "ipAddress": "172.200.1.130",
+  "ipAddress": "192.168.1.20",
   "port": 502,
   "slaveId": 1,
   "controlMap": "lgjh4_control",
@@ -30,20 +66,27 @@ The snippet below demonstrates a device with **id** "battery1" and **protocol** 
 }
 ```
 
+### Optional Parameters
 The parameters listed below are optional and are not required for a device with the Modbus TCP/IP protocol to work properly. However, sometimes it is desirable to add these optional parameters for device monitoring or because they are required by the manufacturer.
 
-### Optional Parameters
+<ParamField path="critical" type="bool" optional>
+Marks this device as critical or not. If a device is marked as critical (value true), any fault occurring on this device will send out an alert or notification over Telegram.
 
-- **critical:** Marks this device as critical or not. If a device is marked as critical (value true), any fault occurring on this device will send out an alert or notification over Telegram. (Type: Bool)
-- **communicationInterval:** Indicates the delay between consecutive Modbus operations, read or write. Between each Modbus command, the controller will wait this amount of time. The value is expressed in seconds. (Type: Int or Float)
+</ParamField>
 
-The snippet below demonstrates a device with **id** “converter1” and **protocol** “Modbus TCP/IP”, including all the required parameters along with the optional parameters.
+<ParamField path="communicationInterval" type="float" optional>
+Indicates the delay between consecutive Modbus operations, read or write. Between each Modbus command, the controller will wait this amount of time. The value is expressed in seconds.
 
-```json
+**Example:** `0.2`
+</ParamField>
+
+The snippet below demonstrates a device with id `converter1` and protocol `Modbus TCP/IP`, including all the required parameters along with the optional parameters.
+
+```json icon="code"
 {
   "id": "converter1",
   "protocol": "Modbus TCP/IP",
-  "ipAddress": "172.200.1.131",
+  "ipAddress": "192.168.1.21",
   "port": 502,
   "slaveId": 240,
   "controlMap": "30C3_control",

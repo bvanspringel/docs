@@ -8,9 +8,9 @@ Each entry in the JSON-formatted address map corresponds to a Modbus register on
 
 Modbus registers or addresses have two key distinctions: read operations and write operations. Modbus read operations correspond to function codes FC1, FC2, FC3, and FC4. Write operations, used for sending commands to devices, are associated with function codes FC5, FC6, FC15, and FC16. This distinction is crucial when adding Modbus registers to the device address map.
 
-<Check>
+<Note>
 Please note that for most devices, the most commonly used function codes are FC3, FC6, and FC16. However, it is important to know that the PPL controller supports all Modbus function codes, despite the frequent use of these particular ones.
-</Check>
+</Note>
 
 ### Naming Conventions
 
@@ -23,44 +23,98 @@ While not mandatory, it is recommended to adopt the following naming conventions
 See the example Modbus address map below for register naming conventions.
 
 ### Required Parameters
-
 Each register in the address map must include the following parameters, regardless of whether it is for reading or writing Modbus registers:
 
-- **address:** The Modbus device address from which to read a register or to which to write a value. (Type: Int)
-- **numberOfRegisters:** Specifies the number of registers to read or write. This should be 1 for (u)int16 data types and 2 for (u)int32 or float32 data types. (Type: Int)
-- **name:** A unique name for the register, representing the measurement point read from or written to the Modbus device. (Type: String, e.g., "measure.ports.port1.voltage")
-- **datatype:** The data type of the value. (Type: String, options: int16, uint16, int32, uint32, float32)
-- **functionCode:** The Modbus function code required to read from or write to the device. (Type: Int, options: FC1, FC2, FC3, FC4, FC5, FC6, FC15, FC16)
+<ParamField path="address" type="int" required>
+The Modbus device address from which to read a register or to which to write a value.
+
+**Example:** `0`
+</ParamField>
+
+<ParamField path="numberOfRegisters" type="int" required>
+Specifies the number of registers to read or write. This should be 1 for (u)int16 data types and 2 for (u)int32, float32 or string32 data types and 4 for (u)int64 or float64 data types.
+
+**Example:** `1`
+</ParamField>
+
+<ParamField path="name" type="string" required>
+A unique name for the register, representing the measurement point read from or written to the Modbus device.
+
+**Example:** `measure.ports.port1.voltage`
+</ParamField>
+
+<ParamField path="datatype" type="string" required>
+The data type of the value.
+
+**Options:** `int16`, `uint16`, `int32`, `uint32`, `float32`, `string32`, `int64`, `uint64`, `float64`
+</ParamField>
+
+<ParamField path="functionCode" type="int" required>
+The Modbus function code required to read from or write to the device.
+
+**Options:** `1`, `2`, `3`, `4`, `5`, `6`, `15`, `16`
+</ParamField>
 
 ### Optional Parameters
-
 These parameters are not necessary for every register but can be included as needed:
 
-- **scaling:** The scaling factor to apply to the Modbus register's return value or the value being written. (Type: Float or Int, e.g., 0.1 or 10)
-- **offset:** The offset to apply to the Modbus register's return value or the value being written. (Type: Float or Int, e.g., -3000)
-- **map:** Indicates if mapping should be applied to the return value or the value being written. (Type: String, options: "bitwise" or "value")
-    - **Bitwise Mapping:** Each bit in a number corresponds to a specific state (e.g., fault or status).
-    - **Value Mapping:** The entire return value corresponds to a state.
-- **wordOrder:** Specifies the word order notation. (Type: String, options: "littleEndian", "bigEndian")
-- **byteOrder:** Specifies the byte order notation. (Type: String, options: "littleEndian", "bigEndian")
+<ParamField path="scaling" type="float">
+The scaling factor to apply to the Modbus register's return value or the value being written.
 
-### Required Register ‘communicationCheck’
+**Example:** `0.1`
+</ParamField>
 
-There is a specific register that must be included in every Modbus address map, known as **communicationCheck**. This register allows the PPL controller to verify communication with the Modbus device. The controller pings the device and attempts to read the value from the register specified as communicationCheck. A successful read confirms the connection between the PPL controller and the Modbus device.
+<ParamField path="offset" type="float">
+The offset to apply to the Modbus register's return value or the value being written.
+
+**Example:** `10`
+</ParamField>
+
+<ParamField path="map" type="object">
+Indicates if mapping should be applied to the return value or the value being written.
+- **Bitwise Mapping:** Each bit in a number corresponds to a specific state (e.g., fault or status).
+- **Value Mapping:** The entire return value corresponds to a state.
+
+**Example:**
+```json icon="code"
+{
+    "map": {
+        "type": "bitwise"
+    }
+}
+```
+</ParamField>
+
+<ParamField path="wordOrder" type="string">
+Specifies the word order notation.
+
+**Options:** `littleEndian`, `bigEndian`
+</ParamField>
+
+<ParamField path="byteOrder" type="string">
+Specifies the byte order notation.
+
+**Options:** `littleEndian`, `bigEndian`
+</ParamField>
+
+### Required Register `communicationCheck`
+
+There is a specific register that must be included in every Modbus address map, known as `communicationCheck`. This register allows the PPL controller to verify communication with the Modbus device. The controller pings the device and attempts to read the value from the register specified as communicationCheck. A successful read confirms the connection between the PPL controller and the Modbus device.
 
 This register only needs the required parameters to be filled in; optional parameters are not necessary. However, the register must be a valid Modbus register on the device. Therefore, it can be a duplicate of another Modbus register in your address map, but with a different name. For example:
 
 ```json icon="code"
 {
 	"address": 1,
-  "numberOfRegisters": 1,
-  "name": "communicationCheck",
-  "datatype": "int16",
-  "functionCode": 3
+	"numberOfRegisters": 1,
+	"name": "communicationCheck",
+	"datatype": "int16",
+	"functionCode": 3
 }
 ```
 
-By following the naming conventions and adding all the required and optional parameters to each Modbus register, you have created a complete address map for the controller to communicate and interact with the device. The final JSON file should be saved with a unique name and a `.json` extension. For example, **30C3_address_map.json**.
+By following the naming conventions and adding all the required and optional parameters to each Modbus register, you have created a complete address map for the controller 
+to communicate and interact with the device. The final JSON file should be saved with a unique name and a `.json` extension. For example, `30C3_address_map.json`.
 
 ### Example
 

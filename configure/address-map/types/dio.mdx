@@ -13,18 +13,35 @@ See the example address map below for register naming conventions.
 
 ### Required Parameters
 
-- **name:** A unique name for the register. (Type: String, e.g., "measure.start")
-- **address:** Corresponds to the number on the digital input or output module. (Type: Int)
-    
-    <Note>
-    Please note that the address should start from 0, not from 1. However, the physical address on the I/O module begins at 1.
-    </Note>
-    
-- **type:** Indicates whether the register is an input or an output. (Type: String, options: "input", "output")
+<ParamField path="name" type="string" required>
+A unique name for the register.
+
+**Example:** `measure.start`
+</ParamField>
+
+<ParamField path="address" type="int" required>
+Corresponds to the number on the digital input or output module.
+
+**Example:** `6`
+
+<Note>
+Please note that the address should start from 0, not from 1. However, the physical address on the I/O module begins at 1.
+</Note>
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Indicates whether the register is an input or an output.
+
+**Example:** `input`
+</ParamField>
 
 ### Optional Parameters
 
-- **invert:** Indicates whether to invert the input or output of the digital I/O, meaning that "on" becomes "off" and vice versa. This relates to the digital input or output being a normally open or normally closed contact. (Type: Bool)
+<ParamField path="invert" type="bool" optional>
+Indicates whether to invert the input or output of the digital I/O, meaning that "on" becomes "off" and vice versa. This relates to the digital input or output being a normally open or normally closed contact.
+
+**Example:** `true`
+</ParamField>
 
 ### Example
 

@@ -6,8 +6,15 @@ So far, a control map for analog inputs or outputs has not been created because 
 
 ### Required Parameters
 
-- **Name:** The unique name of the control command. (Type: String)
-- **Commands:** This contains a list of write commands that will be executed when the control command is called upon. (Type: String)
+<ParamField path="name" type="string" required>
+The unique name of the control command.
+
+</ParamField>
+
+<ParamField path="commands" type="string" required>
+This contains a list of write commands that will be executed when the control command is called upon.
+
+</ParamField>
 
 <Check>
 It's always advisable to have your custom-created device and config files, addresses, and control maps reviewed by the DEP PPL support team. 

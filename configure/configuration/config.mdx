@@ -15,20 +15,44 @@ Below, we will provide detailed information on each entry, including the require
 
 ### Required Parameters
 
-- **ipAddress:** This is the IP address of the controller. It should always be configured to the controller’s current IP address, as it is used to create sockets. (Type: String, e.g., “172.200.1.120”)
+<ParamField path="ipAddress" type="string" required>
+This is the IP address of the controller. It should always be configured to the controller’s current IP address, as it is used to create sockets.
+
+**Example:** `192.168.1.10`
+</ParamField>
 
 ### Optional Parameters
 
 Though these parameters are not required for the controller to operate, it is good practice to include them in the configuration file to avoid losing track of login credentials.
 
-- **username:** The username for logging into the WBM of the controller or a shell session. This should be set to “admin”. (Type: String)
-- **password:** The password for logging into the WBM of the controller or a shell session. (Type: String)
+<ParamField path="username" type="string" optional>
+The username for logging into the WBM of the controller or a shell session. This should be set to `admin`.
+
+**Example:** `admin`
+</ParamField>
+
+<ParamField path="password" type="string" optional>
+The password for logging into the WBM of the controller or a shell session.
+
+**Example:** `password`
+</ParamField>
 
 ## mqtt
 
 ### Required Parameters
 
-- **broker:** This entry contains all relevant information for the broker. At this time, only the **ipAddress** is required. The IP address should be the controller’s current IP address. For clarity, refer to the final configuration file example below. (Type: String)
+<ParamField path="broker" type="object" required>
+This entry contains all relevant information for the broker. At this time, only the **ipAddress** is required. The IP address should be the controller’s current IP address. For clarity, refer to the final configuration file example below.
+
+**Example:**
+```json icon="code"
+{
+    "broker": {
+        "ipAddress": "192.168.1.10"
+    }
+}
+```
+</ParamField>
 
 ## telegram
 
@@ -36,8 +60,17 @@ Telegram is preconfigured in the config file to enable notifications and alerts.
 
 ### Required Parameters
 
-- **chatID:** Represents the unique chat ID of the Telegram channel. Each Telegram channel has its own unique ID. (Type: String)
-- **botToken:** A token consisting of letters and numbers, required for authorizing the bot and sending requests to the Bot API. The Bot API is already added to the Telegram channel. (Type: String)
+<ParamField path="chatID" type="string" required>
+Represents the unique chat ID of the Telegram channel. Each Telegram channel has its own unique ID.
+
+**Example:** `123456789`
+</ParamField>
+
+<ParamField path="botToken" type="string" required>
+A token consisting of letters and numbers, required for authorizing the bot and sending requests to the Bot API. The Bot API is already added to the Telegram channel.
+
+**Example:** `123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ`
+</ParamField>
 
 ## nats
 
@@ -45,16 +78,36 @@ Telegram is preconfigured in the config file to enable notifications and alerts.
 
 The required parameters are used to set up a local NATS server on the controller. This NATS server is used to integrate with custom applications developed by the customer.
 
-- **local:**
-    - **username:** The username for setting up a local NATS server on the PPL controller. (Type: String)
-    - **password:** The password for setting up a local NATS server on the PPL controller. (Type: String)
+<ParamField path="local" type="object" required>
+The required parameters are used to set up a local NATS server on the controller. This NATS server is used to integrate with custom applications developed by the customer.
+
+**Example:**
+```json icon="code"
+{
+    "local": {
+        "username": "client",
+        "password": "xxxxxxxx"
+    }
+}
+```
+</ParamField>
 
 ### Optional Parameters
 
 The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing measurements. By providing these parameters, the controller can periodically push data to the cloud.
 
-- **cloud:**
-    - **username:** The username for connecting to the cloud NATS server, used to store controller data in the cloud database. (Type: String)
-    - **password:** The password for connecting to the cloud NATS server, used to store controller data in the cloud database. (Type: String)
-    - **ipAddress:** The IP address of the cloud server hosting the database. (Type: String)
-    - **bucket:** The name of the database bucket where the controller data will be stored. Note that the bucket must be created by Direct Energy Partners. (Type: String)
+<ParamField path="cloud" type="object" optional>
+The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing measurements. By providing these parameters, the controller can periodically push data to the cloud.
+
+**Example:**
+```json icon="code"
+{
+    "cloud": {
+        "username": "client",
+        "password": "xxxxxxxx",
+        "ipAddress": "192.168.1.5",
+        "bucket": "my-bucket"
+    }
+}
+```
+</ParamField>

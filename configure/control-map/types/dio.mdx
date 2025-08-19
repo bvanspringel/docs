@@ -6,8 +6,17 @@ A control map for digital I/O’s is typically used to control multiple digital 
 
 ### Required Parameters
 
-- **Name:** The unique name of the control command. (Type: String, e.g., “red”)
-- **Commands:** This contains a list of write commands that will be executed when the control command is called upon. (Type: String)
+<ParamField path="name" type="string" required>
+The unique name of the control command.
+
+**Example:** `red`
+</ParamField>
+
+<ParamField path="commands" type="string" required>
+This contains a list of write commands that will be executed when the control command is called upon.
+
+**Example:** `control.status.input1 = 1 | control.status.input2 = 0 | control.status.input3 = 0 | control.status.input4 = 0`
+</ParamField>
 
 ### Example
 

@@ -6,8 +6,17 @@ A dedicated control map is required for each Modbus device. However, this contro
 
 ### Required Parameters
 
-- **Name:** The unique name of the control command. (Type: String, e.g., “getMeasurements”)
-- **Commands:** This contains a list of read or write commands that will be executed when the control command is called upon. (Type: String)
+<ParamField path="name" type="string" required>
+The unique name of the control command.
+
+**Example:** `getMeasurements`
+</ParamField>
+
+<ParamField path="commands" type="string" required>
+This contains a list of read or write commands that will be executed when the control command is called upon.
+
+**Example:** `measurements1? | measurements2? | measurements3? | measurements4?`
+</ParamField>
 
 <Note>
 Note the difference between read and write commands:
