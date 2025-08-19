@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Power Platform Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#26A9E0",
+    "light": "#26A9E0",
+    "dark": "#26A9E0"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -89,8 +89,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/dcide_black.svg",
+    "dark": "/logo/dcide_white.svg"
   },
   "navbar": {
     "links": [
