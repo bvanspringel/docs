@@ -32,22 +32,20 @@ Please note that the address should start from 0, not from 1. However, the physi
 <ParamField path="type" type="string" required>
 Indicates whether the register is an input or an output.
 
-**Example:** `input`
+**Options:** `input | output`
 </ParamField>
 
 ### Optional Parameters
 
 <ParamField path="invert" type="bool">
 Indicates whether to invert the input or output of the digital I/O, meaning that "on" becomes "off" and vice versa. This relates to the digital input or output being a normally open or normally closed contact.
-
-**Example:** `true`
 </ParamField>
 
 ### Example
 
 ```json address_map.json icon="code"
 [
-	{        
+  {        
     "name": "control.reset",
     "address": 2,
     "type": "output"

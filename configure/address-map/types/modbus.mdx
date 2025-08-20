@@ -46,26 +46,47 @@ A unique name for the register, representing the measurement point read from or 
 <ParamField path="datatype" type="string" required>
 The data type of the value.
 
-**Options:** `int16`, `uint16`, `int32`, `uint32`, `float32`, `string32`, `int64`, `uint64`, `float64`
+**Options:** `int16 | uint16 | int32 | uint32 | float32 | string32 | int64 | uint64 | float64`
 </ParamField>
 
 <ParamField path="functionCode" type="int" required>
 The Modbus function code required to read from or write to the device.
 
-**Options:** `1`, `2`, `3`, `4`, `5`, `6`, `15`, `16`
+**Options:** `1 | 2 | 3 | 4 | 5 | 6 | 15 | 16`
 </ParamField>
 
 ### Optional Parameters
 These parameters are not necessary for every register but can be included as needed:
 
-<ParamField path="scaling" type="float">
+<ParamField path="scaling" type="int | float | string">
 The scaling factor to apply to the Modbus register's return value or the value being written.
 
 **Example:** `0.1`
 </ParamField>
 
-<ParamField path="offset" type="float">
+<ParamField path="offset" type="int | float">
 The offset to apply to the Modbus register's return value or the value being written.
+
+**Example:** `10`
+</ParamField>
+
+<ParamField path="direction" type="string">
+The direction of the power or current flow on a port of the device. When the direction is set to `output`, 
+the register value will be inverted.
+
+**Options:** `input | output`
+</ParamField>
+
+<ParamField path="minimum" type="int | float">
+The minimum value of the register. For write register, setting the minimum value prevents you from
+writing a value lower than the minimum value. The control command will be blocked by the Power Platform.
+
+**Example:** `0`
+</ParamField>
+
+<ParamField path="maximum" type="int, float">
+The maximum value of the register. For write register, setting the maximum value prevents you from
+writing a value higher than the maximum value. The control command will be blocked by the Power Platform.
 
 **Example:** `10`
 </ParamField>
@@ -78,23 +99,27 @@ Indicates if mapping should be applied to the return value or the value being wr
 **Example:**
 ```json icon="code"
 {
-    "map": {
-        "type": "bitwise"
-    }
+  "map": {
+    "type": "bitwise"
+  }
 }
 ```
+</ParamField>
+
+<ParamField path="multiRead" type="bool">
+Indicates if the register is a multi-read register.
 </ParamField>
 
 <ParamField path="wordOrder" type="string">
 Specifies the word order notation.
 
-**Options:** `littleEndian`, `bigEndian`
+**Options:** `littleEndian | bigEndian`
 </ParamField>
 
 <ParamField path="byteOrder" type="string">
 Specifies the byte order notation.
 
-**Options:** `littleEndian`, `bigEndian`
+**Options:** `littleEndian | bigEndian`
 </ParamField>
 
 ### Required Register `communicationCheck`
@@ -105,11 +130,11 @@ This register only needs the required parameters to be filled in; optional param
 
 ```json icon="code"
 {
-	"address": 1,
-	"numberOfRegisters": 1,
-	"name": "communicationCheck",
-	"datatype": "int16",
-	"functionCode": 3
+  "address": 0,
+  "numberOfRegisters": 1,
+  "name": "communicationCheck",
+  "datatype": "int16",
+  "functionCode": 3
 }
 ```
 
@@ -120,68 +145,69 @@ to communicate and interact with the device. The final JSON file should be saved
 
 ```json address_map.json icon="code"
 [
-	{
-	  "address": 1,
-	  "numberOfRegisters": 1,
-	  "name": "measure.ports.port1.voltage",
-	  "datatype": "int16",
-	  "functionCode": 3
-	},
-	{
-	  "address": 2,
-	  "numberOfRegisters": 1,
-	  "name": "measure.ports.port2.current",
-	  "datatype": "int16",
-	  "functionCode": 3,
-	  "scaling": -0.1,
-	  "offset": 0
-	},
-	{
-	  "address": 3,
-	  "numberOfRegisters": 1,
-	  "name": "control.ports.port1.method",
-	  "datatype": "uint16",
-	  "functionCode": 6,
-	  "map": {
-		  "type": "value",
-		  "0": "disabled",
-		  "1": "uncontrolled",
-		  "1026": "GPWR",
-		  "1282": "FPWR"
-		}
-	},
-	{
-	  "address": 4,
-	  "numberOfRegisters": 1,
-	  "name": "fault.active.0",
-	  "datatype": "uint16",
-	  "functionCode": 3,
-	  "map": {
-	    "type": "bitwise",
-	    "0": "GFDI fault",
-	    "1": "IMI fault",
-	    "2": "PM heatsink temp",
-	    "3": "Control board temp",
-	    "4": "24V undervoltage",
-	    "5": "Ext fan lockd",
-	    "6": "DC OV",
-	    "7": "DC UV",
-	    "8": "Link OV",
-	    "9": "Link starve",
-	    "10": "Link OI",
-	    "11": "Link Prim Pos 1200V",
-	    "12": "Link Prim Neg 1200V",
-	    "13": "Link Sec Pos 1200V",
-	    "14": "Link Sec Neg 1200V",
-	    "15": "AC1 A-B Hard Sw Cond"
-	  }
-	},
-	{
-	  "address": 1,
-	  "numberOfRegisters": 1,
-	  "name": "communicationCheck",
-	  "datatype": "int16",
-	  "functionCode": 3
-	}
+  {
+    "address": 0,
+    "numberOfRegisters": 1,
+    "name": "measure.ports.port1.voltage",
+    "datatype": "int16",
+    "functionCode": 3
+  },
+  {
+    "address": 1,
+    "numberOfRegisters": 1,
+    "name": "measure.ports.port2.current",
+    "datatype": "int16",
+    "functionCode": 3,
+    "scaling": 0.1,
+    "offset": 0,
+    "direction": "output"
+  },
+  {
+    "address": 2,
+    "numberOfRegisters": 1,
+    "name": "control.ports.port1.method",
+    "datatype": "uint16",
+    "functionCode": 6,
+    "map": {
+      "type": "value",
+      "0": "disabled",
+      "1": "uncontrolled",
+      "1026": "GPWR",
+      "1282": "FPWR"
+    }
+  },
+  {
+    "address": 3,
+    "numberOfRegisters": 1,
+    "name": "fault.active.0",
+    "datatype": "uint16",
+    "functionCode": 3,
+    "map": {
+      "type": "bitwise",
+      "0": "GFDI fault",
+      "1": "IMI fault",
+      "2": "PM heatsink temp",
+      "3": "Control board temp",
+      "4": "24V undervoltage",
+      "5": "Ext fan lockd",
+      "6": "DC OV",
+      "7": "DC UV",
+      "8": "Link OV",
+      "9": "Link starve",
+      "10": "Link OI",
+      "11": "Link Prim Pos 1200V",
+      "12": "Link Prim Neg 1200V",
+      "13": "Link Sec Pos 1200V",
+      "14": "Link Sec Neg 1200V",
+      "15": "AC1 A-B Hard Sw Cond"
+    }
+  },
+  {
+    "address": 0,
+    "numberOfRegisters": 1,
+    "name": "communicationCheck",
+    "datatype": "int16",
+    "functionCode": 3
+  }
 ]
 ```
