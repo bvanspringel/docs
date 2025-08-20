@@ -2,29 +2,32 @@
 title: Example
 ---
 
-Here is an example of a final devices file, featuring devices with various protocols and types. Please note that this file is for illustration only and 
+Here is an example of a final `devices.json` file, featuring devices with various protocols and types. Please note that this file is for illustration only and 
 cannot be uploaded to the controller. Ensure that you modify, add, or remove devices as needed to accurately reflect all the devices in your application.
 
 ```json devices.json icon="code"
 [
   {
 	  "id": "battery1",
+	  "type": "battery",
 	  "protocol": "Modbus TCP/IP",
 	  "ipAddress": "192.168.1.20",
 	  "port": 502,
 	  "slaveId": 1,
-	  "controlMap": "lgjh4_control",
-	  "addressMap": "lgjh4_address_map",
+	  "controlMap": "lg_jh4_control",
+	  "addressMap": "lg_jh4_address_map",
 	  "disabled": false
 	},
   {
 	  "id": "converter1",
+	  "type": "converter",
 	  "protocol": "Modbus TCP/IP",
 	  "ipAddress": "192.168.1.21",
 	  "port": 502,
 	  "slaveId": 240,
-	  "controlMap": "30C3_control",
-	  "addressMap": "30C3_address_map",
+	  "controlMap": "cet_30C3_control",
+	  "addressMap": "cet_30C3_address_map",
+	  "forwardMap": "cet_30C3_forward_map",
 	  "disabled": false,
 	  "critical": true,
 	  "communicationInterval": 0.2

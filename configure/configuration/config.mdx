@@ -25,13 +25,13 @@ This is the IP address of the controller. It should always be configured to the 
 
 Though these parameters are not required for the controller to operate, it is good practice to include them in the configuration file to avoid losing track of login credentials.
 
-<ParamField path="username" type="string" optional>
+<ParamField path="username" type="string">
 The username for logging into the WBM of the controller or a shell session. This should be set to `admin`.
 
 **Example:** `admin`
 </ParamField>
 
-<ParamField path="password" type="string" optional>
+<ParamField path="password" type="string">
 The password for logging into the WBM of the controller or a shell session.
 
 **Example:** `password`
@@ -96,7 +96,7 @@ The required parameters are used to set up a local NATS server on the controller
 
 The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing measurements. By providing these parameters, the controller can periodically push data to the cloud.
 
-<ParamField path="cloud" type="object" optional>
+<ParamField path="cloud" type="object">
 The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing measurements. By providing these parameters, the controller can periodically push data to the cloud.
 
 **Example:**

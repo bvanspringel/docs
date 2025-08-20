@@ -30,7 +30,7 @@ Indicates whether the device is enabled or disabled. A value of true means the d
 ### Optional Parameters
 The following parameters can be added to digital input or output devices; however, they are optional and not required. These parameters provide additional functionality to the device.
 
-<ParamField path="retainInputs" type="bool" optional>
+<ParamField path="retainInputs" type="bool">
 This parameter indicates if the inputs should be retained or not. If true, when input changes state, it will keep the value for 10 seconds.
 
 <Note>
@@ -38,7 +38,7 @@ Note that this parameter is relevant only for digital inputs, not for outputs.
 </Note>
 </ParamField>
 
-<ParamField path="controlMap" type="string" optional>
+<ParamField path="controlMap" type="string">
 The name of the device’s control map on the controller.
 
 **Example:** `indicators_rgb7_control`
