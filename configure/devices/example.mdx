@@ -7,50 +7,62 @@ cannot be uploaded to the controller. Ensure that you modify, add, or remove dev
 
 ```json devices.json icon="code"
 [
-	{
-	  "id": "converter1",
-	  "type": "converter",
-	  "protocol": "Modbus TCP/IP",
-	  "ipAddress": "192.168.1.20",
-	  "port": 502,
-	  "slaveId": 240,
-	  "controlMap": "cet_30C3_control",
-	  "addressMap": "cet_30C3_address_map",
-	  "forwardMap": "cet_30C3_forward_map",
-	  "disabled": false,
-	  "critical": true,
-	  "communicationInterval": 0.2
-	},
   {
-	  "id": "battery1",
-	  "type": "battery",
-	  "protocol": "Modbus TCP/IP",
-	  "ipAddress": "192.168.1.21",
-	  "port": 502,
-	  "slaveId": 1,
-	  "controlMap": "lg_jh4_control",
-	  "addressMap": "lg_jh4_address_map",
-	  "disabled": false
-	},
-	{
-	  "id": "pushbuttons",
-	  "type": "digitalInputOutput",
-	  "addressMap": "pushbuttons_address_map",
-	  "retainInputs": true,
-	  "disabled": false
-	},
-	{
-	  "id": "indicators",
-	  "type": "digitalInputOutput",
-	  "controlMap": "indicators_rgb7_control",
-	  "addressMap": "indicators_address_map",
-	  "disabled": false
-	},
-	{
-	  "id": "transducer",
-	  "type": "analogInputOutput",
-	  "addressMap": "vmt_address_map",
-	  "disabled": false
-	}
+    "id": "converter1",
+    "type": "converter",
+    "protocol": "Modbus TCP/IP",
+    "ipAddress": "192.168.1.20",
+    "port": 502,
+    "slaveId": 240,
+    "controlMap": "cet_30C3_control",
+    "addressMap": "cet_30C3_address_map",
+    "forwardMap": "cet_30C3_forward_map",
+    "disabled": false,
+    "critical": true,
+    "communicationInterval": 0.2
+  },
+  {
+    "id": "battery1",
+    "type": "battery",
+    "protocol": "Modbus TCP/IP",
+    "ipAddress": "192.168.1.21",
+    "port": 502,
+    "slaveId": 1,
+    "controlMap": "lg_jh4_control",
+    "addressMap": "lg_jh4_address_map",
+    "disabled": false
+  },
+  {
+    "id": "pushbuttons",
+    "type": "digitalInputOutput",
+    "addressMap": "pushbuttons_address_map",
+    "retainInputs": true,
+    "disabled": false
+  },
+  {
+    "id": "indicators",
+    "type": "digitalInputOutput",
+    "controlMap": "indicators_rgb7_control",
+    "addressMap": "indicators_address_map",
+    "disabled": false
+  },
+  {
+    "id": "transducer",
+    "type": "analogInputOutput",
+    "addressMap": "vmt_address_map",
+    "disabled": false
+  },
+  {
+    "id": "battery1_precharge",
+    "type": "precharge",
+    "addressMap": "battery1_precharge_address_map",
+    "disabled": false,
+    "prechargePeriodInSeconds": 10,
+    "holdonTimeAuxiliaryContactorInSeconds": 2,
+    "tresholdVoltage": 700,
+    "contactorFeedback": true,
+    "breakerFeedback": true,
+    "maximumVoltage": 760
+  }
 ]
 ```

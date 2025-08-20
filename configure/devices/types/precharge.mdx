@@ -1,0 +1,92 @@
+---
+title: Precharge
+---
+
+### Required Parameters
+To add a precharge device, the following parameters are required.
+
+<ParamField path="id" type="string" required>
+A unique identifier for the device.
+
+**Example:** `battery1_precharge`
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Indicates the type of device. For this type of device, it is always `precharge`.
+
+**Example:** `precharge`
+</ParamField>
+
+<ParamField path="addressMap" type="string" required>
+The name of the device’s address map on the controller.
+
+**Example:** `battery1_precharge_address_map`
+</ParamField>
+
+<ParamField path="disabled" type="bool" required>
+Indicates whether the device is enabled or disabled. A value of true means the device is disabled, while false means the device is enabled.
+</ParamField>
+
+<ParamField path="prechargePeriodInSeconds" type="int" required>
+Indicates the precharge period in seconds.
+
+**Example:** `10`
+</ParamField>
+
+<ParamField path="holdonTimeAuxiliaryContactorInSeconds" type="int" required>
+Indicates the hold-on time for the auxiliary contactor in seconds.
+
+**Example:** `2`
+</ParamField>
+
+<ParamField path="tresholdVoltage" type="int" required>
+Indicates the threshold voltage in volts at which the precharge sequence starts.
+
+**Example:** `700`
+</ParamField>
+
+### Optional Parameters
+The following parameters can be added to digital input or output devices; however, they are optional and not required. These parameters provide additional functionality to the device.
+
+<ParamField path="contactorFeedback" type="bool">
+Indicates whether the contactor feedback is enabled or not.
+</ParamField>
+
+<ParamField path="breakerFeedback" type="bool">
+Indicates whether the breaker feedback is enabled or not.
+</ParamField>
+
+<ParamField path="maximumVoltage" type="int">
+Indicates the maximum voltage in volts at which the precharge device opens the main contactor.
+
+**Example:** `760`
+</ParamField>
+
+<ParamField path="analogMeasurementAddressMap" type="string">
+Indicates the name of the device’s analog measurement address map on the controller.
+
+**Example:** `battery1_analog_address_map`
+</ParamField>
+
+The snippet below demonstrates a precharge device, highlighting both the required and optional parameters.
+
+```json icon="code"
+{
+  "id": "battery1_precharge",
+  "type": "precharge",
+  "addressMap": "battery1_precharge_address_map",
+  "disabled": false,
+  "prechargePeriodInSeconds": 10,
+  "holdonTimeAuxiliaryContactorInSeconds": 2,
+  "tresholdVoltage": 700,
+  "contactorFeedback": true,
+  "breakerFeedback": true,
+  "maximumVoltage": 760
+}
+```
+
+<Warning>
+When configuring a precharge device, ensure that all required parameters are correctly specified to avoid configuration errors. 
+Optional parameters can provide additional functionality and control but are not necessary for basic operation. 
+Always verify that the paths provided for addressMap are accurate and that the files exist in the specified locations.
+</Warning>

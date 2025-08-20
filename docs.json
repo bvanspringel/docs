@@ -28,8 +28,9 @@
                 "pages": [
                   "configure/devices/types/modbus",
                   "configure/devices/types/mqtt",
+                  "configure/devices/types/dio",
                   "configure/devices/types/aio",
-                  "configure/devices/types/dio"
+                  "configure/devices/types/precharge"
                 ]
               },
               "configure/devices/example"
@@ -51,8 +52,8 @@
                 "pages": [
                   "configure/address-map/types/modbus",
                   "configure/address-map/types/mqtt",
-                  "configure/address-map/types/aio",
-                  "configure/address-map/types/dio"
+                  "configure/address-map/types/dio",
+                  "configure/address-map/types/aio"
                 ]
               }
             ]
@@ -66,8 +67,8 @@
                 "pages": [
                   "configure/control-map/types/modbus",
                   "configure/control-map/types/mqtt",
-                  "configure/control-map/types/aio",
-                  "configure/control-map/types/dio"
+                  "configure/control-map/types/dio",
+                  "configure/control-map/types/aio"                  
                 ]
               }
             ]
