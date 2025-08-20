@@ -2,4 +2,57 @@
 title: MQTT
 ---
 
-Coming soon…
+### Naming Conventions
+
+While not mandatory, it is recommended to adopt the following naming conventions for clarity and usability:
+
+- **Read Operations:** Prefix register names with `measure.` to indicate that the register is used for measurement purposes.
+
+### Required Parameters
+
+<ParamField path="name" type="string" required>
+A unique name for the register.
+
+**Example:** `measure.voltage`
+</ParamField>
+
+<ParamField path="key" type="string" required>
+The key of the MQTT message.
+
+**Example:** `DCV_V`
+</ParamField>
+
+<ParamField path="pathToReadings" type="string" required>
+The path to the readings in the MQTT message.
+
+**Example:** `readings`
+</ParamField>
+
+<ParamField path="pathToKey" type="string" required>
+The path to the key in the MQTT message.
+
+**Example:** `param`
+</ParamField>
+
+<ParamField path="pathToValue" type="string" required>
+The path to the value in the MQTT message.
+
+**Example:** `value`
+</ParamField>
+
+<ParamField path="valueIncludesUnit" type="bool" required>
+Indicates whether the value includes the unit.
+</ParamField>
+
+### Example
+
+```json icon="code"
+{
+  "name": "measure.voltage",
+  "key": "DCV_V",
+  "pathToReadings": "readings",
+  "pathToKey": "param",
+  "pathToValue": "value",
+  "valueIncludesUnit": false
+}
+```

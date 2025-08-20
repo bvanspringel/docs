@@ -67,7 +67,6 @@
                 "group": "Device Types",
                 "pages": [
                   "configure/control-map/types/modbus",
-                  "configure/control-map/types/mqtt",
                   "configure/control-map/types/dio",
                   "configure/control-map/types/aio"                  
                 ]
