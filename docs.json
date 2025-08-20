@@ -53,7 +53,8 @@
                   "configure/address-map/types/modbus",
                   "configure/address-map/types/mqtt",
                   "configure/address-map/types/dio",
-                  "configure/address-map/types/aio"
+                  "configure/address-map/types/aio",
+                  "configure/address-map/types/precharge"
                 ]
               }
             ]

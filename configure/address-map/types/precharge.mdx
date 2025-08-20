@@ -1,0 +1,118 @@
+---
+title: Precharge
+---
+
+### Naming Conventions
+
+While not mandatory, it is recommended to adopt the following naming conventions for clarity and usability:
+
+- **Write Operations:** Prefix register names with "control." to indicate that the register is used to set the digital output.
+- **Read Operations:** Prefix register names with "measure." to signify that the register is used to read the digital input signal.
+
+See the example address map below for register naming conventions.
+
+### Required Parameters
+
+<ParamField path="name" type="string" required>
+A unique name for the register.
+
+**Example:** `control.mainContactor`
+</ParamField>
+
+<ParamField path="address" type="int" required>
+Corresponds to the number on the digital input or output module.
+
+**Example:** `0`
+
+<Note>
+Please note that the address should start from 0, not from 1. However, the physical address on the I/O module begins at 1.
+</Note>
+</ParamField>
+
+<ParamField path="type" type="string" required>
+Indicates whether the register is an input or an output.
+
+**Options:** `input | output`
+</ParamField>
+
+### Required Registers
+
+<ParamField path="control.mainContactor" type="string" required>
+This register is used to control the main contactor.
+</ParamField>
+
+<ParamField path="control.auxiliaryContactor" type="string" required>
+This register is used to control the auxiliary contactor.
+</ParamField>
+
+### Optional Registers
+
+**Reference Contactor**
+
+<ParamField path="control.referenceContactor" type="string">
+This register is used to control the reference contactor.
+</ParamField>
+
+**Contactor Feedback**
+
+<ParamField path="measure.mainContactor" type="string">
+This register is used to measure the main contactor.
+</ParamField>
+
+<ParamField path="measure.auxiliaryContactor" type="string">
+This register is used to measure the auxiliary contactor.
+</ParamField>
+
+<ParamField path="measure.referenceContactor" type="string">
+This register is used to measure the reference contactor.
+</ParamField>
+
+**Breaker Feedback**
+
+<ParamField path="measure.breakerFeedback" type="string">
+This register is used to measure the breaker.
+</ParamField>
+
+### Example
+
+The example below shows a complete address map for a precharge device with all required and optional registers.
+
+```json address_map.json icon="code"
+[
+  {        
+    "name": "control.mainContactor",
+    "address": 0,
+    "type": "output"
+  },
+  {        
+    "name": "control.auxiliaryContactor",
+    "address": 1,
+    "type": "output"
+  },
+  {        
+    "name": "control.referenceContactor",
+    "address": 2,
+    "type": "output"
+  },
+  {        
+    "name": "measure.mainContactor",
+    "address": 8,
+    "type": "input"
+  },
+  {        
+    "name": "measure.auxiliaryContactor",
+    "address": 9,
+    "type": "input"
+  },
+  {        
+    "name": "measure.referenceContactor",
+    "address": 10,
+    "type": "input"
+  },
+  {        
+    "name": "measure.breakerFeedback",
+    "address": 11,
+    "type": "input"
+  }
+]
+```
