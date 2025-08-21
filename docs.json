@@ -11,6 +11,32 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Installation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "installation/index"
+            ]
+          },
+          {
+            "group": "Settings",
+            "pages": [
+              "installation/settings/login",
+              "installation/settings/network",
+              "installation/settings/credentials",
+              "installation/settings/app"
+            ]
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "installation/support/index"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "File Configuration",
         "groups": [
           {

@@ -1,0 +1,29 @@
+---
+title: Network
+---
+
+To change the network settings, login to the Web-Based Management (WBM) interface of the Power Platform controller.
+For information on how to do this, see the [Login](login) section.
+
+### Change Network Settings
+
+<Steps>
+<Step title="Navigate to the Configuration tab">
+  - Navigate to the **Configuration** tab in the left navigation plane and select **Network**.
+</Step>
+<Step title="Update the IP address, subnet mask, and default gateway">
+  - Update the IP address, subnet mask, and default gateway to match your local network. **For example:**
+    - IP address: `172.200.1.120`
+    - Subnet mask: `255.255.255.0`
+    - Default gateway: `172.200.1.1`
+</Step>
+<Step title="Click Apply and reboot">
+  - Click **Apply and reboot**. The controller will reboot with the new settings and become visible on your local network with the newly set IP address.
+</Step>
+</Steps>
+    
+<img 
+  src="/images/wbm_configuration_network.png" 
+  alt="Network Configuration" 
+  style={{ width: '400px', margin: 'auto' }}
+/>
