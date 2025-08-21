@@ -6,75 +6,124 @@ To integrate the PPL controller into your local network, you need to change its 
 as well as modify the controller’s **subnet mask** and default **gateway**. This section provides detailed instructions on how to configure the 
 network settings of the controller using the Web-Based Management (WBM) interface.
 
-1. **Connect Laptop to PPL Controller:**
-Use an Ethernet cable to connect your laptop directly to the PPL controller. The connection method varies depending on your PPL version:
-	- **Basic and Premium Versions:** Connect your laptop directly to the PPL controller using any of the two Ethernet ports located at the bottom of the controller.
-			
-		<img
-			src="/images/phoenix_contactaxc_f_2152_ethernet.png"
-			alt="Phoenix ContactAXC F 2152 Ethernet"
-			style={{ width: '400px', margin: 'auto' }}
-		/>
-			
-	- **Pro Version (PPL Panel):** Connect your laptop to the Ethernet connection port at the bottom of the panel. This port is directly connected to the network switch inside the PPL panel.
+### Connect Laptop
 
-2. **Set Laptop to the Controller’s IP Range:**
-	- The default IP address of the PPL controller is `192.168.1.10`.
-	- Temporarily change your laptop's IP settings to be in the same range as the controller’s IP address. To do this, open the network settings on your laptop and either change or add a new static IP address, subnet mask, and gateway. For example:
-		- **IP address:** `192.168.1.5`
-		- **Subnet mask:** `255.255.255.0`
-		- **Default gateway:** `192.168.1.1`
-		
-		Below is explained how to change or add the network settings for Windows and Mac.
+Use an Ethernet cable to connect your laptop directly to the PPL controller. The connection method varies depending on your PPL version:
+
+- **Basic and Premium Versions:** Connect your laptop directly to the PPL controller using any of the two Ethernet ports located at the bottom of the controller.
 			
-	- **For Windows:**
-			- Open **Network Connections**.
-			- Right-click on the desired network connection and select **Properties**.
-					
-					![Untitled](Configure%20PPL%20Controller%20e7aa67cab7e243f78edd8479164b27e0/Untitled.png)
-					
-			- In the pop-up window, select **Internet Protocol Version 4 (TCP/IPv4)** and click on **Properties**.
-					
-					![Untitled](Configure%20PPL%20Controller%20e7aa67cab7e243f78edd8479164b27e0/Untitled%201.png)
-					
-			- In the new pop-up window, click on **Advanced**.
-					
-					![Untitled](Configure%20PPL%20Controller%20e7aa67cab7e243f78edd8479164b27e0/Untitled%202.png)
-					
-			- In the next window, add the **IP address** with the **subnet mask** and add a **default gateway** as stated above.
-					
-					![Untitled](Configure%20PPL%20Controller%20e7aa67cab7e243f78edd8479164b27e0/Untitled%203.png)
-					
-			- After adding the IP address with the subnet mask and the default gateway, click **OK** to save the settings.
-	- **For Mac:**
-			- **Open System Settings**
-					- Click on the **Apple** menu in the top-left corner of your screen.
-					- Select **System Settings** from the drop-down menu.
-			- **Access Network Settings**
-					- In the **System Settings** window, scroll down and click on **Network** in the sidebar.
-			- **Select the Network Interface**
-					- On the right side, you will see a list of network interfaces (such as Wi-Fi, Ethernet, etc.).
-					- Select the interface you want to configure (e.g., **Wi-Fi** or **Ethernet**).
-			- **Configure IP Address, Subnet Mask, and Gateway**
-					- After selecting the network interface, click on the **Details...** button.
-							- If you are using macOS Ventura or later: After selecting the network interface, you will see a list of available networks. Scroll down and select **TCP/IP**.
-					- In the **Configure IPv4** drop-down menu, select **Manually**.
-					- Add the **IP address,** **subnet mask** and **default gateway** as stated above.
-			- **Save and Apply Changes**
-					- Once all the details have been entered, click **OK** to save the settings.
-					- Click **Apply** in the main **Network** window to apply the changes.
-3. **Login to the WBM:**
-	- Open a web browser and enter `192.168.1.10/wbm` or click on this [link](https://192.168.1.10/wbm).
-	- If prompted with a security warning stating ‘**Your connection is not private**’, click on **Advanced** and then click on **Proceed to 192.168.1.10 (unsafe)**.
+  <img
+    src="/images/phoenix_contactaxc_f_2152_ethernet.png"
+    alt="Phoenix ContactAXC F 2152 Ethernet"
+    style={{ width: '400px', margin: 'auto' }}
+  />
 			
-		![Untitled](Configure%20PPL%20Controller%20e7aa67cab7e243f78edd8479164b27e0/Untitled%204.png)
-			
-	- Log in using the credentials provided to you by DEP:
-		- Username: `admin`
-		- Password: `[provided by DEP]`
-		
-		<Note>
-			If you do not have received your login credentials, please reach out to us at [pplsupport@directenergypartners.com](mailto:pplsupport@directenergypartners.com).
-		</Note>
-	
-	![Untitled](Configure%20PPL%20Controller%20e7aa67cab7e243f78edd8479164b27e0/Untitled%205.png)
+- **Pro Version (PPL Panel):** Connect your laptop to the Ethernet connection port at the bottom of the panel. This port is directly connected to the network switch inside the PPL panel.
+
+### Setup Laptop
+
+Set your laptop to the same IP range as the Power Platform controller. This is required to access the PPL controller's Web-Based Management (WBM) interface.
+
+- The default IP address of the PPL controller is `192.168.1.10`.
+- Temporarily change your laptop's IP settings to be in the same range as the controller’s IP address. To do this, open the network settings on your 
+laptop and either change or add a new static IP address, subnet mask, and gateway. For example:
+  - **IP address:** `192.168.1.5`
+  - **Subnet mask:** `255.255.255.0`
+  - **Default gateway:** `192.168.1.1`
+  
+  Below is explained how to change or add the network settings for Windows and Mac.
+    
+<Expandable title="For Windows">
+
+  <Steps>
+    <Step title="Open Network Connections">
+    </Step>
+    <Step title="Select Properties">
+      Right-click on the desired network connection and select **Properties**.
+      <img
+        src="/images/windows_network_connections.png"
+        alt="Windows Network Connections"
+        style={{ margin: 'auto' }}
+      />
+    </Step>
+    <Step title="Select Internet Protocol Version 4">
+      In the pop-up window, select **Internet Protocol Version 4 (TCP/IPv4)** and click on **Properties**.
+      <img
+        src="/images/windows_network_properties.png"
+        alt="Windows Network Properties"
+        style={{ width: '300px', margin: 'auto' }}
+      />
+    </Step>
+    <Step title="Click on Advanced">        
+      <img
+        src="/images/windows_network_tcpip.png"
+        alt="Windows Network TCP/IP"
+        style={{ width: '300px', margin: 'auto' }}
+      />
+    </Step>
+    <Step title="Add Settings">
+      In the next window, add the **IP address** with the **subnet mask** and add a **default gateway** as stated above.
+      <img
+        src="/images/windows_network_advanced.png"
+        alt="Windows Network Advanced"
+        style={{ width: '300px', margin: 'auto' }}
+      />
+    </Step>
+    <Step title="Click OK to save the settings">
+      After adding the IP address with the subnet mask and the default gateway, click **OK** to save the settings.
+    </Step>
+  </Steps>
+</Expandable>
+
+<Expandable title="For Mac">
+
+  <Steps>
+    <Step title="Open System Settings">
+      Click on the **Apple** menu in the top-left corner of your screen.
+    </Step>
+    <Step title="Select System Settings">
+      Select **System Settings** from the drop-down menu.
+    </Step>
+    <Step title="Access Network Settings">
+      In the **System Settings** window, scroll down and click on **Network** in the sidebar.
+    </Step>
+    <Step title="Select the Network Interface">
+      On the right side, you will see a list of network interfaces (such as Wi-Fi, Ethernet, etc.).
+      Select the interface you want to configure (e.g., **Wi-Fi** or **Ethernet**).
+    </Step>
+    <Step title="Configure IP Address, Subnet Mask, and Gateway">
+      After selecting the network interface, click on the **Details...** button.
+      - If you are using macOS Ventura or later: After selecting the network interface, you will see a list of available networks. Scroll down and select **TCP/IP**.
+      - In the **Configure IPv4** drop-down menu, select **Manually**.
+      - Add the **IP address,** **subnet mask** and **default gateway** as stated above.
+    </Step>
+    <Step title="Save Changes">
+      Once all the details have been entered, click **OK** to save the settings.
+    </Step>
+  </Steps>
+</Expandable>
+
+### Login to the WBM
+
+- Open a web browser and enter `192.168.1.10/wbm` or click on this [link](https://192.168.1.10/wbm).
+- If prompted with a security warning stating ‘**Your connection is not private**’, click on **Advanced** and then click on **Proceed to 192.168.1.10 (unsafe)**.
+    
+<img
+  src="/images/wbm_connection_private.png"
+  alt="WBM Connection Private"
+  style={{ width: '400px', margin: 'auto' }}
+/>
+    
+- Log in using the credentials provided to you by DEP:
+  - Username: `admin`
+  - Password: `[provided by DEP]`
+
+  <img
+    src="/images/wbm_login_screen.png"
+    alt="WBM Login Screen"
+    style={{ margin: 'auto' }}
+  />
+  
+  <Note>
+    If you do not have received your login credentials, please reach out to us at [pplsupport@directenergypartners.com](mailto:pplsupport@directenergypartners.com).
+  </Note>
