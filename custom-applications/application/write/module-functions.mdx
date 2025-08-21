@@ -1,0 +1,62 @@
+---
+title: Module Functions
+---
+
+The `pplapp` module, developed by Direct Energy Partners, includes several built-in functions. These functions are 
+designed to either retrieve measurement data from the NATS interface or send commands to the controller through the 
+NATS interface. The controller then forwards these commands to the respective devices in the microgrid. Below is a list 
+of all the commands available for use in the custom application.
+
+To use these functions, call the `app` instance of the `pplapp` module and enter the desired function. See the examples 
+below for more information.
+
+<Accordion title="getAllMeasurements">
+  This function retrieves all measurements from the devices. It returns a dictionary where the keys are all the devices 
+  in the microgrid application and the values are the corresponding measurements. Each measurement is also a dictionary, 
+  as shown in the example below.
+  
+  ```python icon="python"
+    measurements = app.getAllMeasurements()
+    # Example:
+    measurements = {
+      "converter1": {
+        "measure.ports.port1.voltage": "480",
+        "measure.ports.port2.voltage": "351",
+        "measure.ports.port3.voltage": "415"
+      },
+      "battery1": {
+        "measure.ports.port1.voltage": "415",
+        "measure.ports.port1.current": "10",
+        "measure.ports.port1.power": "4150"
+      }
+    }
+  ```
+</Accordion>
+    
+<Accordion title="getMeasurement">
+  This function fetches a specific measurement from a device. The function requires two input parameters: **deviceId**, which corresponds to a device listed in the `devices.json` file, and **registerName**, which should be defined in the address map of that device. Refer to the example below for clarity.
+  
+  ```python icon="python"
+    measurement = app.getMeasurements(deviceId, registerName)
+    # Example 1:
+    methodPort2 = app.getMeasurements("converter1", "measure.ports.port2.method")
+    # Example 2:
+    voltagePort2 = app.getMeasurements("converter1", "measure.ports.port2.voltage")
+  ```
+</Accordion>
+    
+<Accordion title="setCommands">
+  This function sends commands to a device in the system. It requires two input parameters: **deviceId**, which corresponds to a device listed in the `devices.json` file, and **commands**, which is a dictionary containing all the commands to be sent to that device. Note that the commands should be defined in the address map of the device. Refer to the example below for clarity.
+    
+  ```python icon="python"
+    app.setCommands(deviceId, commands)
+    # Example 1:
+    app.setCommands("converter1", {"control.ports.port2.voltage": 350})
+    # Example 2:
+    app.setCommands("converter1", {
+        "control.ports.port3.method": "constant-power",
+        "control.ports.port3.power": 5000,
+      }
+    )
+  ```
+</Accordion>

@@ -1,0 +1,117 @@
+---
+title: Boilerplate
+---
+
+This section provides detailed insights into the boilerplate script for writing custom applications, and includes an 
+in-depth explanation of the built-in functions within the `pplapp` module. Additionally, examples of third-party 
+applications are provided to demonstrate the versatility and practical applications of the `pplapp` module.
+
+### Write Application from Boilerplate
+
+The boilerplate script provided by Direct Energy Partners helps establish the NATS connection and allows you to write 
+your own applications to manage power and energy resources. To create your custom application, start with this boilerplate 
+script. Add your logic to the `pms()` function defined in the script, then run the application.
+
+```python boilerplate.py icon="python"
+import time
+from pplapp import Pplapp
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Constants:
+startupDelay = 5
+executionDelay = 5
+
+# Main function:
+def pms(app):
+    pass
+
+# Helper functions:
+def function1():
+    pass
+
+def function2():
+    pass
+
+def function3():
+    pass
+
+# Main code that will create a NATS connection and run the PMS loop
+def main():
+    try:
+        # Define the IP address of the controller, and username and password for the NATS connection
+        ipAddress = "192.168.1.10"
+        username = os.getenv("NATS_USERNAME")
+        password = os.getenv("NATS_PASSWORD")
+
+        if not username or not password:
+            raise ValueError("NATS username or password not set in environment variables")
+
+        # Initialize the NATS connection to the controller
+        app = Pplapp(ipAddress, username, password)
+
+        time.sleep(startupDelay)
+
+        # Run the PMS loop
+        while True:
+            pms(app)
+            time.sleep(executionDelay)
+
+    except Exception as e:
+        print(f"Failed to initialize PMS: {e}")
+
+    except KeyboardInterrupt:
+        print("Exiting program")
+        app.connectToNats = False
+
+if __name__ == "__main__":
+    main()
+```
+
+**Detailed Steps**
+
+Below is a step-by-step explanation of what the boilerplate script, as shown previously, does:
+
+<Steps>
+  <Step title="Importing Required Modules">
+    - The script begins by importing necessary modules:
+      - `time` for handling delays.
+      - `pplapp` for creating the NATS interface with the controller.
+      - `dotenv` for loading environment variables from a `.env` file.
+      - `os` for accessing environment variables and interacting with the operating system.
+  </Step>
+  <Step title="Load Environment Variables">
+    - The script loads environment variables from a `.env` file.
+    - This is used for loading credentials, such as the username and password, required for establishing the NATS client connection.
+  </Step>
+  <Step title="Define Constants">
+    - Define `startupDelay` and `executionDelay` variables to control the delay for startup and subsequent executions of the main loop.
+    - Additional constants for use in the `pms()` function can also be added here.
+  </Step>
+  <Step title="Main PMS Function">
+    - Define a function named `pms()`. This function currently contains no logic but is where you will write your custom application or function.
+  </Step>
+  <Step title="Helper Functions">
+    - Helper functions can be defined here. A Python helper function is a small, auxiliary function designed to perform a specific, often repetitive task to support the main function and improve code modularity and readability.
+  </Step>
+  <Step title="Initialization and Main Loop">
+    - **IP Address and Credentials Assignment:**
+      - Assign the IP address of the controller that the custom application will interface with, as this address is essential for establishing a connection.
+      - Additionally, set up the username and password for the NATS connection to ensure secure access and authentication. The username and password are loaded from the `.env` file.
+    - **Connecting to NATS Server:** Use the `pplapp` module, initialized with the assigned IP address, to connect to the NATS server.
+    - **Running the Script:**
+      - Implement a while loop that runs indefinitely, allowing continuous reception of data and sending of control commands.
+      - Within this loop, call the `pms()` function to execute your custom logic.
+      - Adjust the interval between executions as needed by modifying the `executionDelay` variable.
+    - The main loop should be enclosed within a try-except block to catch and handle any errors that occur during execution.
+  </Step>
+  <Step title="Exception Handling">
+    By incorporating a `try-except` block, you make your script more robust and reliable, as it can manage errors effectively and respond to user interruptions in a user-friendly way.
+    
+    - **General Exceptions**: Handle a broad range of unexpected errors. Use this to catch and manage errors that don’t fall into specific categories.
+    - **Keyboard Interrupts**: Handle user interruptions gracefully, ensuring that the script exits in a controlled manner.
+  </Step>
+</Steps>

@@ -1,0 +1,57 @@
+---
+title: On Local Machine
+---
+
+The custom application can be run on various platforms, including your local machine (laptop or desktop), external devices 
+such as a Raspberry Pi, or a virtual machine. It can also be executed directly on the PPL controller. This guide provides 
+instructions on running the application on your local machine using Visual Studio Code. Additional platform-specific instructions 
+will be added in the future.
+
+<Note>
+  It is recommended to run your custom application on a local machine first. This approach allows you to test and 
+  troubleshoot the newly developed application. Once testing is complete, the application can then be transferred to the 
+  Power Platform controller for execution.
+</Note>
+
+Follow the steps below to run the custom application on your local machine using the Terminal in Visual Studio Code. 
+The instructions assume that Visual Studio Code is already open and the `ppl-app` repository is loaded.
+
+<Steps>
+  <Step title="Update IP Address in Application">
+    - Modify the IP address in the main function. By default, the controller's IP address is configured.
+    
+    <Note>
+      The IP address for the NATS connection should match the IP address of the Power Platform controller.
+    </Note>
+  </Step>
+  
+  <Step title="Update NATS Client Credentials">
+    - Open the `.env` file from the left navigation pane.
+    - In the `.env` file, update the username and password for the NATS client connection. Default credentials are currently assigned.
+  
+    <Note>
+      The username and password for the NATS connection should match the **username** and **password** specified in the `config.json` file under the **nats local** section.
+    </Note>
+  </Step>
+  
+  <Step title="Open Terminal in VS Code">
+    - Click on **Terminal** in the top menu bar and select **New Terminal**.
+    - A terminal window will open at the bottom of your screen.
+  </Step>
+  
+  <Step title="Run Application">
+    - Execute the Python script in the terminal by running the following command:
+    
+    ```bash
+    python boilerplate.py
+    ```
+  </Step>
+</Steps>
+
+Watch the instructional video to learn how to install the required libraries and run the application on your local machine:
+
+<iframe 
+  title="Run Application on Local Machine"
+  src="https://www.loom.com/share/07916a17269848459b343c8e8b988cf1?sid=dca41800-7381-4723-b1df-39361b0718c0" 
+  className="w-full h-96 rounded-xl"
+></iframe>

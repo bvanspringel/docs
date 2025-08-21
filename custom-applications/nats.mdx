@@ -1,0 +1,22 @@
+---
+title: What is NATS?
+---
+
+First of all, a brief explanation on what NATS is. NATS (Neural Autonomic Transport System) is an open-source messaging system 
+ideal for cloud-native applications, IoT messaging, and microservices architectures. It offers:
+
+- **High Performance**: Handles millions of messages per second.
+- **Low Latency**: Delivers sub-millisecond latency.
+- **Scalability**: Scales effortlessly to millions of connections.
+- **Simple API**: Features a straightforward, easy-to-use API.
+- **Lightweight**: Utilizes minimal system resources.
+
+### NATS in Power Platform Application
+
+Direct Energy Partners employs NATS for two-way communication between its controller and external applications. 
+This setup allows applications like PMS to monitor and control power and energy resources efficiently.
+
+### Communication Patterns
+
+1. **Publish/Subscribe**: External applications subscribe to topics for updates like real-time energy consumption data or alerts.
+2. **Request/Reply**: Applications send requests to the controller for actions (e.g., adjusting power settings) and receive immediate responses.

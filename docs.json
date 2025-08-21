@@ -80,6 +80,52 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Custom Applications",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "custom-applications/index",
+              "custom-applications/nats"
+            ]
+          },
+          {
+            "group": "PPL-APP Repository",
+            "pages": [
+              "custom-applications/repository/repo",
+              "custom-applications/repository/clone"
+            ]
+          },
+          {
+            "group": "Custom Application",
+            "pages": [
+              "custom-applications/application/install",
+              {
+                "group": "Write Application",
+                "pages": [
+                  "custom-applications/application/write/boilerplate",
+                  "custom-applications/application/write/module-functions",
+                  "custom-applications/application/write/integrations"
+                ]
+              },
+              {
+                "group": "Run Application",
+                "pages": [
+                  "custom-applications/application/run/local",
+                  "custom-applications/application/run/controller"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Examples",
+            "pages": [
+              "custom-applications/examples/target-soc"
+            ]
+          }
+        ]
       }
     ],
     "global": {
