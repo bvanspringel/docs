@@ -1,0 +1,135 @@
+---
+title: Communication
+---
+
+A critical step during commissioning is to verify that the controller has successfully established communication with 
+all devices in the microgrid. This is essential for running the application.
+
+There are several methods to check the connection between the controller and the devices. One method is to use a tool called 
+**MQTT Explorer** to monitor the devices in the microgrid. The state of each device will indicate whether it is operational 
+or has a communication fault. 
+
+Another method is to run a **custom NATS application**. This application retrieves measurements from the controller and can 
+display the device ID and state of each device, providing insight into their operational state.
+
+Both approaches are effective. For more details on using MQTT Explorer or running the custom application, refer to the 
+information below.
+
+### Get Device State
+
+To determine whether the controller has successfully connected to the devices in the microgrid, it is necessary to check 
+the state of each device. This can be accomplished through either MQTT Explorer or by running a custom NATS application. 
+Detailed instructions for retrieving the device states using both methods are provided below.
+
+<Expandable title="MQTT Explorer">
+  <Steps>
+    <Step title="Download and Install MQTT Explorer">
+      - **Go to the Website**: Open your browser and visit [mqtt-explorer.com](https://mqtt-explorer.com/).
+      - **Download the App**: Select the version for your OS and download it.
+      - **Install**: Run the downloaded file and follow the installation prompts.
+    </Step>
+    <Step title="Launch MQTT Explorer">
+      - **Open the App**: Find MQTT Explorer in your applications and launch it.
+    </Step>
+    <Step title="Create a New MQTT Connection">
+      - **Add a Connection**: Click the `+` button to create a new connection.
+      - **Enter Details**:
+        - **Name**: Give your connection a descriptive name.
+        - **Protocol**: Choose `mqtt://`.
+        - **Host**: Enter your controller's IP address.
+        - **Port**: Set to `1883`.
+        - **Leave Username/Password Blank**.
+        - **Save**: Click `Save` to store the connection.
+    </Step>
+    <Step title="Connect to the Broker">
+      - **Connect**: Select your connection from the sidebar and click `Connect`.
+      - **Verify**: Confirm the connection status and check for active topics.
+      <Note>
+      If the MQTT Explorer application cannot establish a connection to the host (i.e., the controller), please verify the 
+      configuration settings in the controller's `config.json` file. You can find this file in the `/etc` folder of the 
+      `ppl-base` repository. Ensure that the MQTT broker is assigned the correct IP address of the controller.
+
+      For more details, please refer to the **Configure Config File** section on the 
+      [Configure PPL Files](Configure%20PPL%20Files%2083ccac11bc15410994e889f37a76e999.md) page.
+      </Note>
+
+      If the connection is successful, MQTT Explorer will start listening for incoming messages. The controller will 
+      update the MQTT messages, including device measurements, every 5 seconds.
+    </Step>
+
+    <Step title="Check the Device’s State">
+      - Select a topic from the device list on the left.
+      - Choose the first (and only) entry from the dropdown menu.
+      - The device measurements will appear on the right.
+      - Look for the **state** parameter within the measurements.
+    </Step>
+  </Steps>
+
+  ![image.png](Commission%20and%20Troubleshoot%206eca19e4112349c894b5bf8364287595/image.png)
+</Expandable>
+
+<Expandable title="Custom NATS Application">
+  To run a custom NATS application, please refer to the [Write Custom Applications](Write%20Custom%20Applications%209a8ce107e094477996db591944af2dd0.md) page. 
+  It explains how to install the necessary libraries, update the IP address and NATS credentials, and execute the application.
+
+  To retrieve the state of each device, run the following application found in the examples folder: `device-states.py`. 
+  Execute the application in the Terminal of your code editor (VS Code) using the following command:
+
+  ```bash
+  python device-states.py
+  ```
+
+  This command will display the devices in the microgrid application along with their states.
+
+  ![image.png](Commission%20and%20Troubleshoot%206eca19e4112349c894b5bf8364287595/image%201.png)
+</Expandable>
+
+When checking the device’s state, it is important to verify the devices that communicate over **Modbus TCP/IP**. 
+If the connection between the controller and the Modbus device is not established, the state will display **communicationFault**. 
+This indicates that the controller was unable to establish a connection, and further troubleshooting is needed.
+
+### Resolve Communication Failure
+
+Below are the steps to help resolve the communication failure:
+
+<Steps>
+  <Step title="Ensure the Modbus device is powered on">
+  </Step>
+
+  <Step title="Verify the Modbus device is connected to the network switch">
+  Verify that the Modbus device is connected to the network switch of the PPL controller using Ethernet cables. 
+  Check the Ethernet cable connections at both ends to ensure they are plugged in correctly.
+  </Step>
+
+  <Step title="Check the network settings on the Modbus device">
+  Check the network settings on the Modbus device to ensure the IP address, subnet mask, and gateway are correctly configured.
+  </Step>
+
+  <Step title="Review the device settings in the devices.json file">
+  Review the device settings in the `devices.json` file, located in the `/etc` folder in the `ppl-base` repository:
+    - Ensure `ipAddress` is set correctly
+    - Ensure `slaveId` is set correctly
+    - Ensure `port` is set correctly
+      
+    Compare the IP address, slave ID, and port settings on the Modbus device with those in the `devices.json` file, and update them as needed.
+      
+    For more information on modifying device settings and uploading them to the controller, see the [Configure PPL Files](Configure%20PPL%20Files%2083ccac11bc15410994e889f37a76e999.md) page.
+  </Step>
+
+  <Step title="Confirm only one controller is connected to the Modbus device">
+  Confirm that there is no other controller currently connected to the device (some devices only support a single Modbus client connection).
+  </Step>
+
+  <Step title="Check if the device’s address map includes a communicationCheck register">
+  Check if the device’s address map includes a **communicationCheck** register. For instructions on adding Modbus registers 
+  to the address map, refer to the [Configure PPL Files](Configure%20PPL%20Files%2083ccac11bc15410994e889f37a76e999.md) page.
+  </Step>
+</Steps>
+
+**What's next?**
+
+<Note>
+  If none of the above steps resolve the connection issue, retrieve the log files from the controller. 
+  Refer to the next section on how to retrieve the log files. If you need assistance, contact PPL Support by 
+  emailing [pplsupport@directenergypartners.com](mailto:pplsupport@directenergypartners.com).
+</Note>

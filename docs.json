@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Configure PPL Files",
+        "tab": "File Configuration",
         "groups": [
           {
             "group": "Getting Started",
@@ -123,6 +123,19 @@
             "group": "Examples",
             "pages": [
               "custom-applications/examples/target-soc"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Commission",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "commission/index",
+              "commission/communication",
+              "commission/logs"
             ]
           }
         ]
