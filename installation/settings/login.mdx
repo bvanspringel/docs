@@ -2,15 +2,15 @@
 title: Login
 ---
 
-To integrate the PPL controller into your local network, you need to change its default **IP address** to a static IP address on your network, 
+To integrate the Power Platform controller into your local network, you need to change its default **IP address** to a static IP address on your network, 
 as well as modify the controller’s **subnet mask** and default **gateway**. This section provides detailed instructions on how to configure the 
 network settings of the controller using the Web-Based Management (WBM) interface.
 
 ### Connect Laptop
 
-Use an Ethernet cable to connect your laptop directly to the PPL controller. The connection method varies depending on your PPL version:
+Use an Ethernet cable to connect your laptop directly to the Power Platform controller. The connection method varies depending on your Power Platform version:
 
-- **Basic and Premium Versions:** Connect your laptop directly to the PPL controller using any of the two Ethernet ports located at the bottom of the controller.
+- **Power Platform Controller:** Connect your laptop directly to the Power Platform controller using any of the two Ethernet ports located at the bottom of the controller.
 			
   <img
     src="/images/phoenix_contactaxc_f_2152_ethernet.png"
@@ -18,14 +18,17 @@ Use an Ethernet cable to connect your laptop directly to the PPL controller. The
     style={{ width: '400px', margin: 'auto' }}
   />
 			
-- **Pro Version (PPL Panel):** Connect your laptop to the Ethernet connection port at the bottom of the panel. This port is directly connected to the network switch inside the PPL panel.
+- **Power Platform Panel:** Connect your laptop to the Ethernet connection port at the bottom of the panel. This port is directly connected to the network switch inside the Power Platform panel.
 
 ### Setup Laptop
 
-Set your laptop to the same IP range as the Power Platform controller. This is required to access the PPL controller's Web-Based Management (WBM) interface.
+Set your laptop to the same IP range as the Power Platform controller. This is required to access the Power Platform controller's Web-Based Management (WBM) interface.
 
-- The default IP address of the PPL controller is `192.168.1.10`.
-- Temporarily change your laptop's IP settings to be in the same range as the controller’s IP address. To do this, open the network settings on your 
+<Note>
+  The default IP address of the Power Platform controller is `192.168.1.10`.
+</Note>
+
+Temporarily change your laptop's IP settings to be in the same range as the controller’s IP address. To do this, open the network settings on your 
 laptop and either change or add a new static IP address, subnet mask, and gateway. For example:
   - **IP address:** `192.168.1.5`
   - **Subnet mask:** `255.255.255.0`
@@ -105,25 +108,29 @@ laptop and either change or add a new static IP address, subnet mask, and gatewa
 
 ### Login to the WBM
 
-- Open a web browser and enter `192.168.1.10/wbm` or click on this [link](https://192.168.1.10/wbm).
-- If prompted with a security warning stating ‘**Your connection is not private**’, click on **Advanced** and then click on **Proceed to 192.168.1.10 (unsafe)**.
-    
-<img
-  src="/images/wbm_connection_private.png"
-  alt="WBM Connection Private"
-  style={{ width: '400px', margin: 'auto' }}
-/>
-    
-- Log in using the credentials provided to you by DEP:
-  - Username: `admin`
-  - Password: `[provided by DEP]`
+<Steps>
+  <Step title="Open Web Browser">
+    Open a web browser and enter `192.168.1.10/wbm` or click on this [link](https://192.168.1.10/wbm).
+  </Step>
 
-  <img
-    src="/images/wbm_login_screen.png"
-    alt="WBM Login Screen"
-    style={{ margin: 'auto' }}
-  />
-  
-  <Note>
-    If you do not have received your login credentials, please reach out to us at [pplsupport@directenergypartners.com](mailto:pplsupport@directenergypartners.com).
-  </Note>
+  <Step title="Accept Security Warning">
+    If prompted with a security warning stating ‘**Your connection is not private**’, click on **Advanced** and then click on **Proceed to 192.168.1.10 (unsafe)**.
+    <img
+      src="/images/wbm_connection_private.png"
+      alt="WBM Connection Private"
+      style={{ width: '400px', margin: 'auto' }}
+    />
+  </Step>
+
+  <Step title="Enter Credentials">
+    Log in using the credentials provided to you by DEP:
+    - Username: `admin`
+    - Password: `[printed on the housing of the controller]`
+
+    <img
+      src="/images/wbm_login_screen.png"
+      alt="WBM Login Screen"
+      style={{ margin: 'auto' }}
+    />
+  </Step>
+</Steps>

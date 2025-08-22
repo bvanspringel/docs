@@ -1,0 +1,105 @@
+---
+title: Firmware Update
+---
+
+The controller should have the latest firmware, version **2024.0 LTS**, running. This section will guide you on checking the 
+current firmware version and upgrading to the 2024.0 LTS version if needed.
+
+## Check Firmware Version
+
+<Steps>
+  <Step title="Login to the WBM">
+    <Card
+      title="Login to the WBM"
+      icon="lock-open"
+      href="/installation/settings/login"
+      horizontal
+    >
+      Login to the Web-Based Management (WBM) interface of the Power Platform controller.
+    </Card>
+
+  </Step>
+  <Step title="Navigate to the Overview Tab">
+    Navigate to the **Overview** tab in the left navigation plane and select **General Data**.
+  </Step>
+  <Step title="Check Firmware Version">
+    Check the current firmware version and upgrade to the 2024.0 LTS version if needed.
+    <img
+      src="/images/wbm_overview_general_data.png"
+      alt="General Data"
+      style={{ margin: 'auto' }}
+    />
+  </Step>
+</Steps>
+
+## Upgrade Firmware
+
+There are two possible ways to upgrade the firmware of the Power Platform controller. One way is to use the **Web-Based Management (WBM)** interface and the other way is to use 
+a **Shell session**. Regardless of the two options to update the firmware version of the controller, you first need to download the firmware from the Phoenix Contact website. For that:
+
+<Card
+  title="Download Firmware"
+  icon="download"
+  href="https://www.phoenixcontact.com/en-us/support/downloads"
+  horizontal
+>
+  Download the firmware from the Phoenix Contact website.
+</Card>
+
+- Under Firmware, open the Version 2024.0 LTS plane and click on `AXC_F_2152_FW_2024_0_LTS.zip` to start the download.
+- Extract the ZIP file on your local computer.
+
+
+### Through WBM (recommended)
+<Steps>
+  <Step title="Navigate to the Administration Tab">
+    Navigate to the **Administration** tab in the left navigation plane and select **Firmware Update**.
+  </Step>
+  <Step title="Upload raucb File">
+    Upload the `.raucb` file from the extracted ZIP folder.
+  </Step>
+  <Step title="Start Update">
+    Click on **Start Update** to start the update process. This process can take up to 2-3 minutes. The controller will automatically reboot after the update is complete.
+    <img
+      src="/images/wbm_administration_firmware_update.png"
+      alt="Firmware Update"
+      style={{ margin: 'auto' }}
+    />
+  </Step>
+</Steps>
+
+### Through Shell Session
+
+<Steps>
+  <Step title="Copy Firmware File">
+    Copy the `axcf2152-2024.0.0_LTS-24.0.0.102.raucb` file from the extracted ZIP archive to the controller using SCP (Secure Copy Protocol):
+    ```bash
+    scp axcf2152-2024.0.5_LTS-24.0.5.140.raucb admin@192.168.1.10:~
+    ```
+    Alternatively, use an FTP (File Transfer Protocol) software such as FileZilla to copy or move the `.raucb` file to the controller.
+  </Step>
+  <Step title="Open Shell Session">
+    Open a shell session:
+    ```bash
+    ssh admin@192.168.1.10
+    ```
+    Enter the default password (printed on the housing of the controller).
+  </Step>
+  <Step title="Stop Controller Runtime">
+    ```bash
+    sudo /etc/init.d/plcnext stop
+    ```
+  </Step>
+  <Step title="Install Firmware">
+    ```bash
+    rauc install axcf2152-2024.0.0_LTS-24.0.0.102.raucb
+    ```
+  </Step>
+  <Step title="Reboot Controller">
+    ```bash
+    sudo reboot
+    ```
+  </Step>
+</Steps>
+
+Verify in the WBM that the firmware version has been updated to version 2024.0 LTS. Please refer to previous section for more information on how to check the current firmware version.

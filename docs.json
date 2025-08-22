@@ -20,18 +20,26 @@
             ]
           },
           {
+            "group": "Power Up",
+            "pages": [
+              "installation/power/power-supply"
+            ]
+          },
+          {
             "group": "Settings",
             "pages": [
               "installation/settings/login",
               "installation/settings/network",
               "installation/settings/credentials",
-              "installation/settings/app"
+              "installation/settings/update",
+              "installation/settings/app",
+              "installation/settings/license"
             ]
           },
           {
             "group": "Support",
             "pages": [
-              "installation/support/index"
+              "installation/support/remote-access"
             ]
           }
         ]
@@ -178,8 +186,8 @@
     }
   },
   "logo": {
-    "light": "/logo/dcide_black.svg",
-    "dark": "/logo/dcide_white.svg"
+    "light": "/logo/ppl_logo_no_text.svg",
+    "dark": "/logo/ppl_logo_no_text.svg"
   },
   "navbar": {
     "links": [
