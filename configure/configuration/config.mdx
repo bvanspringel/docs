@@ -42,16 +42,23 @@ The password for logging into the WBM of the controller or a shell session.
 ### Required Parameters
 
 <ParamField path="broker" type="object" required>
-This entry contains all relevant information for the broker. At this time, only the **ipAddress** is required. The IP address should be the controller’s current IP address. For clarity, refer to the final configuration file example below.
+  This entry contains all relevant information for the MQTT broker.
+  <Expandable title="properties">
+    <ParamField path="ipAddress" type="string" required>
+      This is the IP address of the broker. The broker is hosted on the Power Platform controller itself, so this should always be the controller’s IP address.
+      
+      **Example:** `192.168.1.10`
+    </ParamField>
+  </Expandable>
 
-**Example:**
-```json icon="code"
-{
-  "broker": {
-    "ipAddress": "192.168.1.10"
+  **Example:**
+  ```json icon="code"
+  {
+    "broker": {
+      "ipAddress": "192.168.1.10"
+    }
   }
-}
-```
+  ```
 </ParamField>
 
 ## telegram
@@ -79,35 +86,71 @@ A token consisting of letters and numbers, required for authorizing the bot and 
 The required parameters are used to set up a local NATS server on the controller. This NATS server is used to integrate with custom applications developed by the customer.
 
 <ParamField path="local" type="object" required>
-The required parameters are used to set up a local NATS server on the controller. This NATS server is used to integrate with custom applications developed by the customer.
+  The required parameters are used to set up a local NATS server on the controller. This NATS server is used to integrate with custom applications developed by the customer.
 
-**Example:**
-```json icon="code"
-{
-  "local": {
-    "username": "client",
-    "password": "xxxxxxxx"
+  <Expandable title="properties">
+    <ParamField path="username" type="string" required>
+      The username for connecting to the local NATS server.
+      
+      **Example:** `client`
+    </ParamField>
+    <ParamField path="password" type="string" required>
+      The password for connecting to the local NATS server.
+      
+      **Example:** `password`
+    </ParamField>
+  </Expandable>
+
+  **Example:**
+  ```json icon="code"
+  {
+    "local": {
+      "username": "client",
+      "password": "password"
+    }
   }
-}
-```
+  ```
 </ParamField>
 
 ### Optional Parameters
 
-The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing measurements. By providing these parameters, the controller can periodically push data to the cloud.
+The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing data. By providing these parameters, the controller can periodically push data to the cloud.
 
 <ParamField path="cloud" type="object">
-The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing measurements. By providing these parameters, the controller can periodically push data to the cloud.
+  The optional parameters are used for setting up a NATS connection to the cloud, which hosts a database for storing data. By providing these parameters, the controller can periodically push data to the cloud.
 
-**Example:**
-```json icon="code"
-{
-  "cloud": {
-    "username": "client",
-    "password": "xxxxxxxx",
-    "ipAddress": "192.168.1.5",
-    "bucket": "my-bucket"
+  <Expandable title="properties">
+    <ParamField path="username" type="string">
+      The username for connecting to the cloud NATS server.
+      
+      **Example:** `client`
+    </ParamField>
+    <ParamField path="password" type="string">
+      The password for connecting to the cloud NATS server.
+      
+      **Example:** `password`
+    </ParamField>
+    <ParamField path="ipAddress" type="string">
+      The IP address of the cloud NATS server.
+      
+      **Example:** `192.168.1.5`
+    </ParamField>
+    <ParamField path="bucket" type="string">
+      The bucket name for storing data.
+      
+      **Example:** `my-bucket`
+    </ParamField>
+  </Expandable>
+
+  **Example:**
+  ```json icon="code"
+  {
+    "cloud": {
+      "username": "client",
+      "password": "password",
+      "ipAddress": "192.168.1.5",
+      "bucket": "my-bucket"
+    }
   }
-}
-```
+  ```
 </ParamField>
